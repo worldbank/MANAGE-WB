@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<SCRIPT type="text/javascript">
+    targetPage = "" + window.location.search;
+    if (targetPage != "" && targetPage != "undefined")
+       targetPage = targetPage.substring(1);
+    function loadFrames() {
+        if (targetPage != "" && targetPage != "undefined")
+             top.classFrame.location = top.targetPage;
+    }
+</SCRIPT>
+</HEAD>
+   <FRAMESET cols="20%,80%" title=""           onLoad="top.loadFrames()">
+      <FRAMESET rows="50%,50%" title="" onLoad="top.loadFrames()">
+         <FRAME src="header.html" name="headerFrame" title="" scrolling="no">
+         <FRAME src="groupSelect.html"       name="groupSelectFrame" title="Group selection">
+   </FRAMESET>
+   <FRAME src="files.html"             name="Current"          title="current" scrolling="yes">
+</FRAMESET>
+</HTML>

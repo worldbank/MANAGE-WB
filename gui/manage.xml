@@ -1,0 +1,2439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GGIG>
+         <AgpSpread.viewSize><attr>1193,782</attr></AgpSpread.viewSize>
+
+         <defaultDirs><attr>model,inc,o,dat,sav,res</attr></defaultDirs>
+         <defaultExes><attr>GAMSExe</attr></defaultExes>
+         <gamsOptionsSys><attr>optdir=opt</attr></gamsOptionsSys>
+
+         <userType><attr>runner</attr></userType>
+         <useSpread><attr>true</attr></useSpread>
+         <editor><attr>c:/windows/notepad.exe</attr></editor>
+         <cleanwindowwithnewgamsstart><attr>ON</attr></cleanwindowwithnewgamsstart>
+         <lastBatchExecutionFile><attr>manage.txt</attr></lastBatchExecutionFile>
+         <generaterefandexpfile><attr>ON</attr></generaterefandexpfile>
+
+         <AgpMapPanel.debugMaps><attr>false</attr></AgpMapPanel.debugMaps>
+
+         <helpmenuitem>
+                  <name>MTI Macro Modelling with CGE models</name>
+                  <value>https://www.worldbank.org/en/programs/mti-macro-modeling/cge</value>
+         </helpmenuitem>
+         <helpmenuitem>
+                  <name>General GUI user guide</name>
+                  <value>jars/GGIG_user_guide.pdf</value>
+                  <type>pdf</type>
+         </helpmenuitem>
+         <helpmenuitem>
+                  <name>GAMS web page</name>
+                  <value>http://www.gams.com</value>
+         </helpmenuitem>
+         <helpmenuitem>
+                  <name>GTAP web page</name>
+                  <value>https://www.gtap.agecon.purdue.edu/</value>
+         </helpmenuitem>
+         <helpmenuitem>
+                  <name>GGIG (Gams Graphical User Interface Generator) web page</name>
+                  <value>https://www.ilr1.uni-bonn.de/en/research/research-groups/economic-modeling-of-agricultural-systems/ggig</value>
+         </helpmenuitem>
+
+    <!--  <dataSetSel><attr>Type=fileSel;Title=Dataset;Options=%resdir%/build/*.gdx;range=-1;tasks=none;</attr></dataSetSel> -->
+         <dataSetSel><attr>Type=fileSel;Title=Dataset;Options=./xml/*.xml;range=-1;tasks=none;style=titlepos:ontop</attr></dataSetSel>
+         <outYearsSel><attr>Type=multilist;Title=Year selection;Options=2010*2100;range=-10;tasks=none</attr></outYearsSel>
+
+
+
+         <icon><attr>manage.gif</attr></icon>
+         <systemlogo><attr>manage.jpg</attr></systemlogo>
+
+         <backgroundColor><attr>180,180,200</attr></backgroundColor>
+
+         <callingFileForScenarioEditor><attr>run.gms</attr></callingFileForScenarioEditor>
+         <builddoc.refDir><attr>../expRefDir</attr></builddoc.refDir>
+         <incDir><attr>../inc</attr></incDir>
+         <datDir><attr>../dat</attr></datDir>
+         <savDir><attr>../sav</attr></savDir>
+         <simDir><attr>../sim</attr></simDir>
+         <regDir><attr>../reg/</attr></regDir>
+         <oDir><attr>../res</attr></oDir>
+         <modelDir><attr>../</attr></modelDir>
+         <resDir><attr>../res</attr></resDir>
+
+
+
+
+         <control>
+                   <type>tab</type>
+                   <title>General settings</title>
+         </control>
+         <control>
+                <type>fileChooser</type>
+                <options>*.zip</options>
+                <title>Zip file with GTAP Base Data</title>
+                <gamsName>GTAPZip</gamsName>
+                <tasks>Load GTAP data</tasks>
+                <style>width:500</style>
+         </control>
+         <control>
+                <type>fileChooser</type>
+                <options>*.zip</options>
+                <title>Zip file with GTAP AEZ Data</title>
+                <gamsName>AEZZip</gamsName>
+                <tasks>Load GTAP data</tasks>
+                <style>width:500</style>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Suffix to GTAP data</title>
+                <gamsName>gtapDataSuffix</gamsName>
+                <option>12Pow</option>
+                <style>width:75</style>
+                <tasks>Load GTAP data</tasks>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Input</title>
+                   <tasks>Prepare GTAP SAM,Match to macro SAM</tasks>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+
+         <!-- task build GTAP SAM -->
+         <control>
+                <type>fileSel</type>
+                <title>GTAP data base input</title>
+                <options>%datDir%/gtapData*.gdx</options>
+                <gamsName>Version</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Calculate global cost shares</title>
+                <value>false</value>
+                <gamsName>calcGblCostShares</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Region(s)</title>
+                <gamsName>regName</gamsName>
+                <style>width:75</style>
+                <tooltip>Leave empty to generate SAMs for all GTAP regions.</tooltip>
+                <tasks>Prepare GTAP SAM</tasks>
+                <dependsOn>Calculate global cost shares:false</dependsOn>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Minimum production value E-</title>
+                <value>3</value>
+                <range>1,10,1</range>
+                <options>int</options>
+                <gamsName>minProdValue</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Minimum cost share E-</title>
+                <value>4</value>
+                <range>3,10,1</range>
+                <options>int</options>
+                <gamsName>minCostShare</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Use SAM correction file</title>
+                <value>false</value>
+                <gamsName>useSamCorrFile</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>SAM correction file (inc)</title>
+                <value>empty</value>
+                <options>%regDir%/%%task%.Region(s)%/samCorr*.inc</options>
+                <gamsName>samCorrFile</gamsName>
+                <dependsOn>Use SAM correction file:true</dependsOn>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+
+
+
+         <control>
+                   <type>Separator</type>
+                   <title>Additional elements</title>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Load AEZ data</title>
+                <value>true</value>
+                <gamsName>useAez</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Build gender differentiated SAM</title>
+                <value>false</value>
+                <gamsName>buildGender</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>New SAM account cattle raising</title>
+                <value>false</value>
+                <gamsName>ctlRais</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>New SAM account electrified other transport</title>
+                <value>false</value>
+                <gamsName>otpEle</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>New SAM account care economy</title>
+                <value>false</value>
+                <gamsName>careEcon</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+                <userLevls>developer</userLevls>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Water-Land split</title>
+                <value>false</value>
+                <gamsName>waterSplit</gamsName>
+                <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>Debt and foreign income</title>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Domestic debt stock relative to gov consumption</title>
+                   <value>0.5</value>
+                   <range>0,3,0.001</range>
+                   <gamsName>debtStckD</gamsName>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Interest rate on domestic debt</title>
+                   <value>5</value>
+                   <range>0,10,0.1</range>
+                   <gamsName>debtIntD</gamsName>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Principal rate on debt</title>
+                   <value>2</value>
+                   <range>0,100,0.1</range>
+                   <gamsName>debtPrinciple</gamsName>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>New debt stock relative to gov consumption</title>
+                   <value>0.05</value>
+                   <range>0,1,0.001</range>
+                   <gamsName>newDebtToGovConsumption</gamsName>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Share of foreign labor income [%]</title>
+                   <value>0.1</value>
+                   <range>0,100,0.1</range>
+                   <gamsName>shareForeignLab</gamsName>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Share of foreign capital income [%]</title>
+                   <value>0.1</value>
+                   <range>0,100,0.1</range>
+                   <gamsName>shareForeignCap</gamsName>
+                   <tasks>Prepare GTAP SAM</tasks>
+         </control>
+
+
+
+
+         <!-- task build data base -->
+
+         <control>
+                <type>dirSel</type>
+                <options>%regDir%/*.</options>
+                <title>Region input dir</title>
+                <gamsName>RegGtapName</gamsName>
+                <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>SAM input (xlsx)</title>
+                <options>%regDir%/%%task%.Region input dir%/SAM_*.xlsx</options>
+                <gamsName>SAMXLS</gamsName>
+                <dependsOn>Region input dir</dependsOn>
+                <tasks>Build proto-SAM,Match to macro SAM</tasks>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>GTAP data</title>
+                <options>%datDir%/gtap*.gdx</options>
+                <gamsName>gtapDataFile</gamsName>
+                <tasks>Build proto-SAM,Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>checkBox</type>
+                   <title>Write new SAM to bridge file</title>
+                   <value>false</value>
+                   <gamsName>writeSAM</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>Choose the Bridge file to write</title>
+                <options>%regDir%/%%task%.Region input dir%/BaseBridge_*.xlsx</options>
+                <gamsName>bridgeFileToWrite</gamsName>
+                <dependsOnAll>Write new SAM to bridge file:true/Region input dir</dependsOnAll>
+                <tasks>Match to macro SAM</tasks>
+                <tooltip>Selects the xlsx to write the SAM.</tooltip>
+         </control>
+         <!--
+         <control>
+                   <type>Separator</type>
+                   <title>Build control</title>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Filter</title>
+                <value>true</value>
+                <gamsName>filter</gamsName>
+                <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>User bounds</title>
+                <value>true</value>
+                <gamsName>Bounds</gamsName>
+                <tasks>Match to macro SAM</tasks>
+         </control>
+         -->
+         <control>
+                   <type>Separator</type>
+                   <title>Algorithm control</title>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>singleList</type>
+                   <title>Macro control</title>
+                   <value>Macro SAM</value>
+                   <options>Macro SAM,Macro totals</options>
+                   <gamsName>MacroControl</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>checkBox</type>
+                   <title>Use MFMOD for macro totals</title>
+                   <value>false</value>
+                   <gamsName>useMFMod</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <dependsOn>Macro control:Macro totals</dependsOn>
+         </control>
+         <control>
+                   <type>checkBox</type>
+                   <title>Column/row sum targets</title>
+                   <value>false</value>
+                   <gamsName>sumTargets</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Weights for coefficients</title>
+                   <value>0.5</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>wgtCoeff</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Scaling factor for SAM</title>
+                   <value>1</value>
+                   <range>1,10000,10</range>
+                   <options>int</options>
+                   <gamsName>samScale</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Cutoff value for small SAM cells 1.E</title>
+                   <value>-10</value>
+                   <range>-10,0,1</range>
+                   <options>int</options>
+                   <gamsName>cutOff</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Split control for activities</title>
+                   <tasks>Match to macro SAM</tasks>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for make matrix entries</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundMakeMatrix</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for make matrix entries</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for make matrix entries</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundMakeMatrix</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for factor demand</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundFacDemand</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for factor demand</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for factor demand</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundFacDemand</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for intermediate demand</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundIntDemand</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for intermediate demand</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for intermediate demand</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundIntDemand</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for indirect firm taxes</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundIndFirmTaxes</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for indirect taxes</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for indirect firm taxes</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundIndFirmTaxes</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>Split control for products</title>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>sameColumn:true</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for final demand</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundFinDemand</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for final demand</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for final demand</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundFinDemand</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for trade</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundTrade</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for trade</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for trade</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundTrade</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Lower bound for indirect product taxes</title>
+                   <value>0</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>LowBoundIndProdTaxes</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Bounds for indirect product taxes</style>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Upper bound for indirect product taxes</title>
+                   <value>100</value>
+                   <range>0,100,0.01</range>
+                   <gamsName>UppBoundIndProdTaxes</gamsName>
+                   <tasks>Match to macro SAM</tasks>
+                   <style>Sameline:true,title:none</style>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Country and time</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+         </control>
+         <control>
+                <type>dirSel</type>
+                <options>%regDir%/*.</options>
+                <title>Region dir</title>
+                <gamsName>RegGtapName</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Project directory, first three characters define name of GTAP regions</tooltip>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>SAM input (xlsx)</title>
+                <options>%regDir%/%%task%.Region dir%/BaseBridge_*.xlsx</options>
+                <gamsName>bridgeFile</gamsName>
+                <dependsOn>Region dir</dependsOn>
+                <tasks>Baseline</tasks>
+                <tooltip>Selects the xlsx comprising the SAM, sets and macro-data.</tooltip>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>BAU file (gdx)</title>
+                <options>%resDir%/%%task%.Region dir%/*BaU*.gdx</options>
+                <gamsName>bauFile</gamsName>
+                <dependsOn>Region dir</dependsOn>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Selects the GDX files with the baseline results.</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Use results as baseline</title>
+                <value>false</value>
+                <gamsName>usedAsBaU</gamsName>
+                <tasks>Simulation</tasks>
+                <userLevls>developer</userLevls>
+                <tooltip>Simulation results define a baseline</tooltip>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Last year</title>
+                <options>2011*2100</options>
+                <value>2100</value>
+                <gamsName>lastYear</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip>Last year for which data are avaiable and maximum end year of simulation</tooltip>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Last year of simulation</title>
+                <options>2011*2100</options>
+                <value>2050</value>
+                <gamsName>lastSimYear</gamsName>
+                <tasks>Baseline, Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Allows to end the simulation before the last year for which data are available.</tooltip>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Stochastic runs</title>
+                <options>2*100</options>
+                <value>10</value>
+                <gamsName>nDraws</gamsName>
+                <tasks>Stochastic simulation</tasks>
+                <tooltip>Number of runs with MANAGE</tooltip>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Stochastic draws to summarize</title>
+                <options>1*1000</options>
+                <value>100</value>
+                <gamsName>nStochDraws</gamsName>
+                <tasks>Stochastic simulation</tasks>
+                <tooltip>Monte Carlo draws for each MANAGE run</tooltip>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Max parallel processes</title>
+                <options>1*32</options>
+                <value>4</value>
+                <gamsName>parallelThreads</gamsName>
+                <tasks>Stochastic simulation</tasks>
+         </control>
+
+
+         <control>
+                   <type>Separator</type>
+                   <title>Shock</title>
+                   <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Simulation name</title>
+                <gamsName>SimName</gamsName>
+                <style>width:75</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Overwrites the default of using the name of shock file to label the result file.</tooltip>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Postfix</title>
+                <gamsName>SimNamePostFix</gamsName>
+                <style>width:75,sameLine:true</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Appends an additional text to the name of the shock file</tooltip>
+         </control>
+         <control>
+              <type>singlelist</type>
+              <title>Shock file type</title>
+              <value>GAMS</value>
+              <options>GAMS,EXCEL</options>
+              <gamsName>ShockFileType</gamsName>
+              <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+         </control>
+
+         <control>
+                <type>fileSel</type>
+                <title>Shock File (inc)</title>
+                <options>%regDir%/%%task%.Region dir%/sim/*.inc</options>
+                <gamsName>shk_file</gamsName>
+                <dependsOnAll>Region dir/Shock file type:GAMS</dependsOnAll>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>Shock File (xslx)</title>
+                <options>%resDir%/%%task%.Region dir%/%%task%.Region dir%_*.xlsx</options>
+                <gamsName>shk_file_xslx</gamsName>
+                <dependsOnAll>Region dir/Shock file type:EXCEL</dependsOnAll>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+         </control>
+
+         <control>
+                <type>text</type>
+                <title>Scen driver 1</title>
+                <gamsName>$</gamsName>
+                <style>width:150</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Scen driver 2</title>
+                <gamsName>$</gamsName>
+                <style>width:150</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Scen driver 3</title>
+                <gamsName>$</gamsName>
+                <style>width:150</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Scen driver 4</title>
+                <gamsName>$</gamsName>
+                <style>width:150</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Scen driver 5</title>
+                <gamsName>$</gamsName>
+                <style>width:150</style>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Scen driver 6</title>
+                <gamsName>$</gamsName>
+                <style>width:150</style>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip>Allows to define text passed to GAMS, such as $setglobal myChange 0.5</tooltip>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Options</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+         </control>
+
+         <control>
+                <type>Checkbox</type>
+                <title>Climate change damagages</title>
+                <value>false</value>
+                <gamsName>CCDamages</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Define selected  CC damage shocks based on Roson and Sartori</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Invest link</title>
+                <value>false</value>
+                <gamsName>InvestLink</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <userLevels>administrator,developer,debugger</userLevels>
+                <tooltip>Pass land cover change to SEALS/INVEST and pass shocks from INVEST to MANAGE in each year</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Air Pollution damages</title>
+                <value>false</value>
+                <gamsName>ifAirPollDmg</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Air pollution damages to labor productivity, labor type and activity specific</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Fiscal Responsibility</title>
+                <value>false</value>
+                <gamsName>FiscalResp</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Reduce gov consumption and savings and increase taxes if debt to GDP ceiling is reached</tooltip>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Debt/GDP Target (%), up</title>
+                   <value>100</value>
+                   <range>0,150,10</range>
+                   <options>int</options>
+                   <gamsName>DebtGDPTgtUp</gamsName>
+                   <dependsOn>Fiscal Responsibility:true</dependsOn>
+                   <tasks>Baseline,Simulation</tasks>
+                   <tooltip>Target for maximal debt to GDP ratio for fiscal responsibility. For 25% enter 25. Set to zero to use data from bridge file.</tooltip>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Debt/GDP Target (%), low</title>
+                   <value>0</value>
+                   <range>0,150,10</range>
+                   <options>int</options>
+                   <gamsName>DebtGDPTgtLo</gamsName>
+                   <dependsOn>Fiscal Responsibility:true</dependsOn>
+                   <tasks>Baseline,Simulation</tasks>
+                   <tooltip>Target for minimal debt to GDP ratio for fiscal responsibility. For 25% enter 25. Set to zero to disable</tooltip>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Expenditure delta relative to tax delta (%)</title>
+                   <value>100</value>
+                   <range>0,150,10</range>
+                   <options>int</options>
+                   <gamsName>relExpInc</gamsName>
+                   <dependsOn>Fiscal Responsibility:true</dependsOn>
+                   <style>title:Expenditure delta\nrelative to tax delta (%)</style>
+                   <tasks>Baseline,Simulation</tasks>
+                   <tooltip>How much expenditures decrease relatve to tax revenues increase. For 25% enter 25. Default is 100%</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Short run shocks</title>
+                <value>false</value>
+                <gamsName>shortRunShock</gamsName>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip>Run model in each year twice, the second time with lower factor suppyl elasticities, elastiticies
+                change factor utilization rates</tooltip>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>GDP Composition dynamics</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+         </control>
+         <control>
+                <type>text</type>
+                <title>GDP (composition) scenario</title>
+                <value>bas</value>
+                <gamsName>GDPCompScen</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <style>width:80</style>
+                <tooltip>Name of scenario for GDP scenarios as stored in bridge-file</tooltip>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Government consumption</title>
+                <value>no change real</value>
+                <options>no change real,nominal,real</options>
+                <gamsName>GDPCompGovCons</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOn>Fiscal Responsibility:false</dependsOn>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Government investment</title>
+                <value>no change real</value>
+                <options>no change real,nominal,real</options>
+                <gamsName>GDPCompGovInv</gamsName>
+                <tasks>Baseline</tasks>
+                   <dependsOn>Fiscal Responsibility:false</dependsOn>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Net exports</title>
+                <value>closure rule</value>
+                <options>closure rule,nominal</options>
+                <gamsName>GDPCompNetExports</gamsName>
+                <tasks>Baseline</tasks>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Foreign savings</title>
+                <value>closure rule</value>
+                <options>closure rule,nominal</options>
+                <gamsName>GDPCompSavf</gamsName>
+                <tasks>Baseline</tasks>
+         </control>
+         <control>
+                <type>checkbox</type>
+                <title>Aggregate sector shares on VA</title>
+                <value>false</value>
+                <gamsName>sectorShareTargets</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+         </control>
+
+         <control>
+                   <type>Tab</type>
+                   <title>Baseline</title>
+                   <tasks>Baseline</tasks>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>Data and checks</title>
+                   <tasks>Baseline</tasks>
+                   <userLevls>developer</userLevls>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Balanced growth check</title>
+                <value>false</value>
+                <gamsName>BGCheck</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer</userLevls>
+                <tooltip>Changes saving rates and demand elasticities to run a balanaced growth check with 1% population increases</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Benchmark check</title>
+                <value>false</value>
+                <gamsName>benchmarkCheck</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer</userLevls>
+                <tooltip>Copies benchmark values to t+1 and runs the model with zero iterations to check benchmarking</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Skip GTAP emission calculations</title>
+                <value>false</value>
+                <gamsName>skipGTAPEmis</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer,debugger,adminstrator,runner:hide</userLevls>
+                <tooltip>Skips calculation of GTAP emissions and prevents loading land cover data from GTAP for debugging.</tooltip>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Model configuration</title>
+                   <tasks>Baseline</tasks>
+         </control>
+
+         <control>
+                <type>Checkbox</type>
+                <title>Forward looking</title>
+                <value>false</value>
+                <gamsName>ForwardLooking</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer</userLevls>
+                <tooltip>The model is solved with a rolling time window of multiple years to consider price expectations, introduces stock dynamics</tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Future years</title>
+                <value>4</value>
+                <range>1,10,1</range>
+                <gamsName>futureYears</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOn>Forward looking:true</dependsOn>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Weight decrease</title>
+                <value>0.1</value>
+                <range>0.01,0.5,0.01</range>
+                <gamsName>expWeight</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOn>Forward looking:true</dependsOn>
+                <style>sameline:true</style>
+                <tooltip>Yearly decrease in weight of future years in defining expectations</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Labor vintages</title>
+                <value>false</value>
+                <gamsName>labVintages</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer,debugger,runner:hide</userLevls>
+                <tooltip>Differentiation of sluggishness in labor supply between new entrants and old stock</tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Sticky wage</title>
+                <value>0</value>
+                <range>0,0.99,0.01</range>
+                <gamsName>stickyWage</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer,debugger,runner:hide</userLevls>
+                <tooltip>A value of zero switches the mechanism off</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Vintages</title>
+                <value>false</value>
+                <gamsName>vintages</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip>Activities broken in new vintage working with new captial and old vintages using old capital stock.
+                Substitution elasticities in the production function can differ.</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Update share parameters</title>
+                <value>true</value>
+                <gamsName>updateOldVintage</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOn>Vintages:true</dependsOn>
+                <userLevls>developer</userLevls>
+                <tooltip>Share parameters of old vintage in t reflect a weighted average of old and new vintage cost shares in t-1</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Endogenous technical progress</title>
+                <value>false</value>
+                <gamsName>endoTech</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOn>Vintages:true</dependsOn>
+         </control>
+         <control>
+                <type>singlelist</type>
+                <title>Current Account</title>
+                <value>Fixed as nominal GDP Share</value>
+                <options>Fixed as nominal GDP share"Foreign saving fixed relative to nominal GDP"
+                         Endogenous with exchange rate and GDP price index fixed"Both GDP price index and exchange rate are fixed"
+                         Endogenous driven by expected return to capital and debt to GDP"as in GTEM"
+                         Endogenous driven by expected return"Global bank approach from GTAP Standard model"
+                         Endogenous driven by investments not covered by regional savings</options>
+                <gamsName>CapAccClosure</gamsName>
+                <!--     Endogenous as in USAGE"Equilibrium capital growth determines private investment supply of investible funds determined by an inverse logistic function"-->
+                <tasks>Baseline</tasks>
+                <dependsOn>Foreign savings:closure rule</dependsOn>
+         </control>
+         <control>
+                <type>SingleList</type>
+                <title>Transfers from ROW</title>
+                <value>Driven by population growth</value>
+                <options>Driven by population growth
+                         Driven by GDP growth
+                </options>
+                <gamsName>rowTransferDriver</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip>Defines update mechanism for transfer from ROW to domestic institutions</tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Sector specific investments</title>
+                <value>false</value>
+                <gamsName>sectSpecInv</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOn>Vintages:true:visible:false</dependsOn>
+                <userLevls>developer</userLevls>
+                <tooltip>Investment demand composition is sector specific such that composition of economy-wide
+                demand changes with sector comsposition</tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Share of old capital in investment demand</title>
+                <value>0.025</value>
+                <range>0.01,0.20,0.005</range>
+                <gamsName>oldCapInvShare</gamsName>
+                <tasks>Baseline</tasks>
+                <dependsOnAll>Vintages:true:visible:0.025/Sector specific investments:true:visible:0.025</dependsOnAll>
+                <tooltip>![CDATA[A share of old capital defines besides new capital the weighted in defining the
+                average composition of investment demand]]</tooltip>
+                <userLevls>developer,adminstrator</userLevls>
+         </control>
+
+         <control>
+                <type>Checkbox</type>
+                <title>Income dependent CDE parameters</title>
+                <value>false</value>
+                <gamsName>IncomeDepCDE</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer</userLevls>
+                <tooltip><![CDATA[Parameters of CDE demand functions for households are updated depending on income per capita.<br/>
+                Regression results using GTAP parameters in cross-sectional analysis for some broader groups can be found in GTAP<br/>
+                template bridge files.]]></tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Capital income shares depend on saving</title>
+                <value>false</value>
+                <gamsName>chicFacCap</gamsName>
+                <tasks>Baseline</tasks>
+                <userLevls>developer</userLevls>
+                <tooltip><![CDATA[Allocation of factor income of capital is updated according to changes in savings of the different<br/>
+                institutions (households, government, enterprises.]]></tooltip>
+         </control>
+
+
+         <control>
+                <type>Separator</type>
+                <title>Productivity</title>
+                <tasks>Baseline</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Differentiated labor productivity</title>
+                <value>false</value>
+                <gamsName>DiffLabProd</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip><![CDATA[Empiricallly estimated function by Roson updates labor productivity in primary and secondary sectors</br>
+                relative to service sectors, driven by GDP growth.]]></tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Land productivity follows labor</title>
+                <value>0</value>
+                <range>0,2,0.01</range>
+                <gamsName>LandProdAsLabor</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip><![CDATA[Land productivity in primary sectors is coupled with factor to changes in labor productivity]]></tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Natural ressource productivity follows labor</title>
+                <value>0</value>
+                <range>0,2,0.01</range>
+                <gamsName>NatresProdAsLabor</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip><![CDATA[Natural ressource productivity in primary sectors is coupled with factor to changes in labor productivity]]></tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Capital productivity follows labor</title>
+                <value>0</value>
+                <range>0,2,0.01</range>
+                <gamsName>capProdAsLabor</gamsName>
+                <tasks>Baseline</tasks>
+                <tooltip><![CDATA[Capital productivity in sectors is coupled with factor to changes in labor productivity]]></tooltip>
+         </control>
+
+         <control>
+                   <type>Tab</type>
+                   <title>Options for damages</title>
+                   <dependsOn>Climate change damagages:true</dependsOn>
+         </control>
+
+         <control>
+                   <type>Spinner</type>
+                   <title>Temperature delta base year for Roson and Sartori</title>
+                   <value>0.5</value>
+                   <range>0,2,0.1</range>
+                   <gamsName>tempIncreaseBaseYear</gamsName>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Temperature delta last simulation year for Roson and Sartori</title>
+                   <value>2.0</value>
+                   <range>0,4,0.1</range>
+                   <gamsName>tempIncreaseSimYear</gamsName>
+         </control>
+
+   <control>
+                <type>Checkbox</type>
+                <title>Roson and Sartori for labor productivity</title>
+                <value>true</value>
+                <gamsName>useRosonSartoriLabProd</gamsName>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Roson and Sartori for land stock</title>
+                <value>true</value>
+                <gamsName>useRosonSartoriLandStock</gamsName>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Roson and Sartori for energy demand</title>
+                <value>true</value>
+                <gamsName>useRosonSartoriEnergyDemand</gamsName>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Roson and Sartori for tourism</title>
+                <value>true</value>
+                <gamsName>useRosonSartoriTourism</gamsName>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Roson and Sartori for crop yields</title>
+                <value>true</value>
+                <gamsName>useRosonSartoriCropYields</gamsName>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Roson and Sartori for health</title>
+                <value>true</value>
+                <gamsName>useRosonSartoriHealth</gamsName>
+                <dependsOn>Climate change damagages:true</dependsOn>
+         </control>
+
+
+         <control>
+                   <type>Tab</type>
+                   <title>CCDR shock</title>
+                   <dependsOn>Shock File (inc):ccdr</dependsOn>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>Scenario design</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOn>Shock File (inc):ccdr</dependsOn>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>GHG Mitigation</title>
+                <value>false</value>
+                <gamsName>GHGMitigation</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOn>Shock File (inc):ccdr</dependsOn>
+                <tooltip><![CDATA[Add options for carbon taxation]]></tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Fix power mix</title>
+                <value>false</value>
+                <gamsName>fixPowerMix</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOn>Shock File (inc):ccdr</dependsOn>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>CC Damages from IEC</title>
+                <value>false</value>
+                <gamsName>CCDamagesIEC</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOn>Shock File (inc):ccdr</dependsOn>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Energy projections</title>
+                <value>false</value>
+                <gamsName>CCEnergy</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOn>Shock File (inc):ccdr</dependsOn>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>Additional shock File (inc)</title>
+                <value>empty</value>
+                <options>%regDir%/%%task%.Region dir%/sim/*.inc</options>
+                <gamsName>add_shk_file</gamsName>
+                <dependsOnAll>Region dir/Shock file type:GAMS/Shock File (inc):ccdr</dependsOnAll>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <tooltip><![CDATA[Shock file to run besides CCDR.inc]]></tooltip>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Power mix</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/Fix power mix:true</dependsOnAll>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Power mix scenario</title>
+                <value>bas</value>
+                <gamsName>PowerScen</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Fix power mix:true</dependsOnAll>
+                <style>width:80</style>
+         </control>
+         <control>
+                <type>checkBox</type>
+                <title>Fix electricity price</title>
+                <value>false</value>
+                <gamsName>fixElecPrice</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Fix power mix:true</dependsOnAll>
+                <style>width:100</style>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>Energy</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+         </control>
+         <control>
+                <type>text</type>
+                <title>Energy scenario</title>
+                <value>BAU</value>
+                <gamsName>EnergyScen</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+                <style>width:80</style>
+         </control>
+         <control>
+                <type>singleList</type>
+                <title>Projection start year</title>
+                <options>2011*2100</options>
+                <value>2018</value>
+                <gamsName>enerProjStartYear</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Total demand projections</title>
+                <value>true</value>
+                <gamsName>EnergyDemandProjections</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Activity specific projections</title>
+                <value>true</value>
+                <gamsName>EnergyActProjections</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Energy efficiency projections</title>
+                <value>true</value>
+                <gamsName>EnergyEffProjections</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>World market price projections</title>
+                <value>false</value>
+                <gamsName>WorldMarketPriceProjections</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/Energy projections:true</dependsOnAll>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>GHG mitigation</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+         </control>
+         <control>
+                <type>text</type>
+                <title>GHG mitigation scenario</title>
+                <value>BAU</value>
+                <gamsName>GHGMitigationScenario</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                <style>width:80</style>
+         </control>
+         <control>
+                   <type>singleList</type>
+                   <title>Policy instrument</title>
+                   <value>Carbon tax</value>
+                   <options>Carbon tax,Ceiling to benchmark,Ceiling to baseline,Absolute ceiling</options>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Include carbon stock changes</title>
+                <value>false</value>
+                <gamsName>considerCarbon</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <userLevels>administrator,developer,debugger</userLevels>
+                <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>MACCs</title>
+                <value>false</value>
+                <gamsName>MACCS</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                <tooltip><![CDATA[Use mechanism which reduces process emission factors depending on points on<br/>
+                Marginal Abatement Cost Curves entered in bridge file and current level of carbon tax.]]></tooltip>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Direct tax recyling</title>
+                   <value>0.1</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>dirTaxRecl</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                   <tooltip><![CDATA[Share of carbon taxes recycled to reduce direct taxes.]]></tooltip>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Factor tax recyling</title>
+                   <value>0.1</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>factTaxRecl</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                   <tooltip><![CDATA[Share of carbon taxes recycled to reduce factor taxes.]]></tooltip>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Sales tax recyling</title>
+                   <value>0.1</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>salesTaxRecl</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                   <tooltip><![CDATA[Share of carbon taxes recycled to reduce sales taxes.]]></tooltip>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>All tax recyling</title>
+                   <value>0.1</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>allTaxRecl</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                   <tooltip><![CDATA[Share of carbon taxes recycled to reduce all taxes.]]></tooltip>
+         </control>
+         <control>
+                   <type>Spinner</type>
+                   <title>Transfers recyling</title>
+                   <value>0.1</value>
+                   <range>0,1,0.01</range>
+                   <gamsName>transfersRecl</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/GHG Mitigation:true</dependsOnAll>
+                   <tooltip><![CDATA[Share of carbon taxes recycled as transfers to domestic institutions.]]></tooltip>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>IEC Damages</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/CC Damages from IEC:true</dependsOnAll>
+         </control>
+         <control>
+                   <type>singleList</type>
+                   <title>IEC scenario</title>
+                   <value>CG</value>
+                   <options>CG,CR,CRM,SR</options>
+                   <gamsName>IECScen</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/CC Damages from IEC:true</dependsOnAll>
+         </control>
+         <control>
+                   <type>singleList</type>
+                   <title>IEC climate</title>
+                   <value>Wet/Warm mean</value>
+                   <options>Wet/Warm mean,Hot/Dry mean,Dry/Hot mean,SSP1-1.9 mean,SSP3-7.0 mean</options>
+                   <gamsName>IECClim</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/CC Damages from IEC:true</dependsOnAll>
+         </control>
+         <control>
+                   <type>singleList</type>
+                   <title>IEC climate type</title>
+                   <value>Wet/Warm</value>
+                   <options>Wet/Warm,Hot/Dry,Ensemble Mean</options>
+                   <gamsName>IECClimType</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/CC Damages from IEC:true</dependsOnAll>
+         </control>
+         <control>
+                   <type>multiList</type>
+                   <title>Damage channels</title>
+                   <options>health,lab,livestock,crops,erosion,urban_flood,hydro,roadBbridge,inland_flood,wash</options>
+                   <range>-4</range>
+                   <gamsName>IECChnls</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <dependsOnAll>Shock File (inc):ccdr/CC Damages from IEC:true</dependsOnAll>
+                   <style>longTexts=true</style>
+         </control>
+
+         <control>
+                   <type>Tab</type>
+                   <title>Invest Link</title>
+                   <dependsOn>Invest link:true</dependsOn>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+                   <control>
+                             <title>Modules</title>
+                             <type>multiList</type>
+                             <title>Invest modules</title>
+                             <options>Crop production,Crop pollination,Erosion,Recreation,Carbon</options>
+                             <range>-3</range>
+                             <gamsName>investModules</gamsName>
+                             <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                             <userLevels>administrator,developer,debugger</userLevels>
+                             <style>output:globals</style>
+                   </control>
+                   <control>
+                             <title>Feedback links</title>
+                             <type>multiList</type>
+                             <options>Crop production,Crop pollination,Erosion</options>
+                             <range>-3</range>
+                             <gamsName>investFeedbacks</gamsName>
+                             <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                             <userLevels>administrator,developer,debugger</userLevels>
+                             <style>output:globals</style>
+                   </control>
+
+         <control>
+                   <type>tab</type>
+                   <title>Sensivity analysis</title>
+                  <tasks>Sensitivity analysis</tasks>
+         </control>
+
+
+         <control>
+                  <Type>Separator</Type>
+                  <Title>Design of experiments</Title>
+                  <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+                  <Type>spinner</Type>
+                  <Title>Number of experiments</Title>
+                  <Value>10</Value>
+                  <range>10,1000,10</range>
+                  <options>int</options>
+                  <gamsName>nDraws</gamsName>
+                  <tasks>Sensitivity analysis</tasks>
+                  <tooltip><![CDATA[Number of MANAGE runs with stochastically drawn parameters based on LHS.]]></tooltip>
+         </control>
+         <control>
+                  <Type>spinner</Type>
+                  <Title>Start number</Title>
+                  <Value>1</Value>
+                  <range>1,100000,1</range>
+                  <options>int</options>
+                  <gamsName>startDraws</gamsName>
+                  <tasks>Sensitivity analysis</tasks>
+                  <tooltip><![CDATA[Indicator number for block of stochastic draws. Draws will be consectuively numbers<br/>
+                   such that results from multiple blocks can be combined (this requires however a separate GAMS process.]]></tooltip>
+         </control>
+         <control>
+                  <Type>singleList</Type>
+                  <Title>Pairing</Title>
+                  <Value>Random</Value>
+                  <options>Random,Restricted</options>
+                  <gamsName>pairing</gamsName>
+                  <tasks>Sensitivity analysis</tasks>
+                  <tooltip><![CDATA[Restricted will change order of draws for different factors to minimze co-variances between<br/>
+                  draws for the factors. Requires more computing time.]]></tooltip>
+         </control>
+         <control>
+                  <Type>spinner</Type>
+                  <Title>Maximum parallel GAMS threads</Title>
+                  <Value>5</Value>
+                  <range>1,20,1</range>
+                  <options>int</options>
+                  <gamsName>parallelThreads</gamsName>
+                  <tasks>Sensitivity analysis</tasks>
+                  <style>title:Maximum parallel\nGAMS threads</style>
+         </control>
+         <control>
+                <type>checkBox</type>
+                <title>Only generate draws</title>
+                <value>false</value>
+                <gamsName>onlyGenerateDraws</gamsName>
+                <tasks>Sensitivity analysis</tasks>
+                <tooltip><![CDATA[Program will stop after LHS has run and draws are reported to lising file.]]></tooltip>
+         </control>
+
+         <control>
+                  <Type>Separator</Type>
+                  <Title>Factors</Title>
+                  <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+               <type>text</type>
+               <title>Name_1</title>
+               <value>p_sigmaM</value>
+               <style>width:150,title:Symbol,titlePos:onTop</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set1_1</title>
+               <value>i</value>
+               <style>sameLine:true,width:80,title:1. set,titlePos:onTop,output:globals</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode1_1</title>
+               <value>draws</value>
+               <style>sameLine:true,title:none,title:Mode,titlePos:onTop,width:100</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set1_2</title>
+               <value></value>
+               <style>sameLine:true,width:80,title:2. Set,titlePos:onTop,output:globals</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode1_2</title>
+               <value>same</value>
+               <style>sameLine:true,title:Mode,titlePos:onTop</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set1_3</title>
+               <style>sameLine:true,width:80,title:3. Set,titlePos:onTop,output:globals</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode1_3</title>
+               <style>sameLine:true,title:Mode,titlePos:onTop</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Trunc. normal,Uniform,Triangular</options>
+               <title>form_1</title>
+               <style>sameLine:true,title:Distribution,titlePos:onTop,Title:Distribution</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <value>mult</value>
+               <options>Mult,Add,Set</options>
+               <title>applMode_1</title>
+               <style>sameLine:true,title:Distribution,titlePos:onTop,Title:Apply</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>lo_1</title>
+               <style>sameLine:true,title:Lo,titlePos:onTop,width:50</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>up_1</title>
+               <style>sameLine:true,title:Up,titlePos:onTop,width:50</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+                <value>1.0</value>
+                <range>-10.0,10.0,0.05</range>
+               <title>Mode_1</title>
+               <style>sameLine:true,title:mode,titlePos:onTop,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.1</value>
+               <range>-1.0,1.0,0.05</range>
+               <title>stdDev_1</title>
+               <style>sameLine:true,title:Std.Dev,titlePos:onTop,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+               <type>text</type>
+               <title>Name_2</title>
+               <style>width:150,title:Symbol,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set2_1</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode2_1</title>
+               <style>sameLine:true,title:none,title:none,width:100,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set2_2</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode2_2</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set2_3</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode2_3</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Trunc. normal,Uniform,Triangular</options>
+               <title>form_2</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <value>Add</value>
+               <options>Mult,Add,Set</options>
+               <title>applMode_2</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>-0.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>lo_2</title>
+               <style>sameLine:true,title:none,noBorder:true,output:globals,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>up_2</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.0</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>Mode_2</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.1</value>
+               <range>-1.0,1.0,0.05</range>
+               <title>stdDev_2</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+               <type>text</type>
+               <title>Name_3</title>
+               <style>width:150,title:Symbol,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set3_1</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode3_1</title>
+               <style>sameLine:true,title:none,title:none,width:100,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set3_2</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode3_2</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set3_3</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode3_3</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Trunc. normal,Uniform,Triangular</options>
+               <title>form_3</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Mult,Add,Set</options>
+               <title>applMode_3</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>lo_3</title>
+               <style>sameLine:true,title:none,noBorder:true,output:globals,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>up_3</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.0</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>Mode_3</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.1</value>
+               <range>-1.0,1.0,0.05</range>
+               <title>stdDev_3</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+               <type>text</type>
+               <title>Name_4</title>
+               <style>width:150,title:Symbol,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set4_1</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode4_1</title>
+               <style>sameLine:true,title:none,title:none,width:100,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set4_2</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode4_2</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set4_3</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode4_3</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Trunc. normal,Uniform,Triangular</options>
+               <title>form_4</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Mult,Add,Set</options>
+               <title>applMode_4</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>lo_4</title>
+               <style>sameLine:true,title:none,noBorder:true,output:globals,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>up_4</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.0</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>Mode_4</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.1</value>
+               <range>-1.0,1.0,0.05</range>
+               <title>stdDev_4</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+               <type>text</type>
+               <title>Name_5</title>
+               <style>width:150,title:Symbol,title:none,noBorder:true</style>
+               <style>title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set5_1</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode5_1</title>
+               <style>sameLine:true,title:none,title:none,width:100,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set5_2</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode5_2</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>text</type>
+               <title>set5_3</title>
+               <style>sameLine:true,width:80,title:none,output:globals,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>same,draws</options>
+               <title>drawMode5_3</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Trunc. normal,Uniform,Triangular</options>
+               <title>form_5</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+                <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>singleList</type>
+               <options>Mult,Add,Set</options>
+               <title>applMode_5</title>
+               <style>sameLine:true,title:none,noBorder:true</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>lo_5</title>
+               <style>sameLine:true,title:none,noBorder:true,output:globals,width:50</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.5</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>up_5</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>1.0</value>
+               <range>-10.0,10.0,0.05</range>
+               <title>Mode_5</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+         <control>
+               <type>spinner</type>
+               <value>0.1</value>
+               <range>-1.0,1.0,0.05</range>
+               <title>stdDev_5</title>
+               <style>sameLine:true,title:none,noBorder:true,width:50</style>
+               <tasks>Sensitivity analysis</tasks>
+         </control>
+
+         <control>
+                   <type>tab</type>
+                   <title>Output</title>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Output for reporting back-end</title>
+                <value>true</value>
+                <gamsName>outputGUI</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <userLevels>administrator,developer,debugger</userLevels>
+                <tooltip><![CDATA[Required to view results in pre-defined tables, graphs and maps.]]></tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Reduced output for back-end</title>
+                <value>false</value>
+                <gamsName>reducedOutput</gamsName>
+                <dependsOn>Output for reporting back-end:true</dependsOn>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <userLevels>administrator,developer,debugger</userLevels>
+                <tooltip><![CDATA[Remove some detail (such as producitivity shifters, or on demand bundles) from reporting to save disk space<br/>
+                and memory needs with inspecting results for many runs.]]></tooltip>
+         </control>
+         <control>
+                <type>Spinner</type>
+                <title>Report frequency for back-end</title>
+                <value>1</value>
+                <range>1,50,1</range>
+                <options>int</options>
+                <gamsName>repFreq</gamsName>
+                <dependsOn>Output for reporting back-end:true</dependsOn>
+                <userLevels>administrator,developer,debugger</userLevels>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Generate SAM</title>
+                <value>false</value>
+                <gamsName>outputSAM</gamsName>
+                <tasks>Baseline,Simulation</tasks>
+                <userLevels>administrator,developer,debugger,runner:hide</userLevels>
+                <tooltip><![CDATA[Generate a SAM for each simulation year and store in GDX output file.]]></tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Output all symbols</title>
+                <value>false</value>
+                <gamsName>outputGDX</gamsName>
+                <tasks>Simulation</tasks>
+                <tooltip><![CDATA[Unload all sets, parameters, variables to GDX output file.]]></tooltip>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Output for EXCEL I/O similar to frEnd</title>
+                <value>false</value>
+                <gamsName>outputfrEnd</gamsName>
+                <tasks>Simulation,Baseline</tasks>
+                <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+         <control>
+                <type>Checkbox</type>
+                <title>Additional output file</title>
+                <value>false</value>
+                <gamsName>userOutput</gamsName>
+                <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                <tooltip><![CDATA[Run additional file after all years have been solve.]]></tooltip>
+                <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+         <control>
+                <type>fileSel</type>
+                <title>Additional output file (inc)</title>
+                <value>empty</value>
+                <options>%regDir%/%%task%.Region dir%/sim/output*.inc</options>
+                <gamsName>add_output_file</gamsName>
+                <dependsOnAll>Additional output file:true</dependsOnAll>
+                <tasks>Simulation,Sensitivity analysis,Stochastic simulation,Baseline</tasks>
+                <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+
+
+
+         <control>
+                   <type>tab</type>
+                   <title>GAMS</title>
+         </control>
+         <control>
+                   <type>Separator</type>
+                   <title>Options for listing</title>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+
+         <control>
+                   <type>singlelist</type>
+                   <title>Print gams code to listing</title>
+                   <value>offListing</value>
+                   <options>onListing,offListing</options>
+                   <gamsName>$</gamsName>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+
+         <control>
+                   <type>singlelist</type>
+                   <title>Symbol list</title>
+                   <value>offSymList</value>
+                   <options>onSymList,offSymList</options>
+                   <gamsName>$</gamsName>
+                   <userLevls>developer</userLevls>
+                   <tooltip><![CDATA[Let GAMS generate a list of symbols declared and/or defined (sets, parameters, variables, equations etc.)]]></tooltip>
+         </control>
+
+         <control>
+                   <type>singlelist</type>
+                   <title>Symbol cross references</title>
+                   <value>offSymxRef</value>
+                   <options>onSymxRef,offSymxRef</options>
+                   <gamsName>$</gamsName>
+                   <userLevls>developer</userLevls>
+                   <tooltip><![CDATA[Let GAMS generate a list of where symbols are declared, defind or used.]]></tooltip>
+         </control>
+         <control>
+                   <type>singlelist</type>
+                   <title>Profile</title>
+                   <value>0</value>
+                   <options>0,1,2,3,4,5,6,7,8,9,10</options>
+                   <gamsName>option profile</gamsName>
+                   <userLevls>developer</userLevls>
+                   <tooltip><![CDATA[Let GAMS generate information on computing time need for individual statements.<br/>
+                    Number decides on the depth of program structures such as loop and if structures to consider.]]></tooltip>
+         </control>
+         <control>
+                   <type>singlelist</type>
+                   <title>ProfileTol</title>
+                   <value>0.1</value>
+                   <options>0.01,0.5,0.1,1,2,3,4,5</options>
+                   <gamsName>option profileTol</gamsName>
+                   <style>sameline:true</style>
+                   <userLevls>developer</userLevls>
+                   <tooltip><![CDATA[Minimum computing in second to report computing time for individual statements.]]></tooltip>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Initialization</title>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+         <control>
+                   <type>singleList</type>
+                   <title>Start point</title>
+                   <value>Baseline</value>
+                   <options>Baseline,Last year's result</options>
+                   <gamsName>startPoint</gamsName>
+                   <tasks>Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <userLevels>administrator,developer,debugger,runner:hide</userLevels>
+                   <tooltip>Larger shocks might perform better when starting from updated t-1 instead of using baseline results</tooltip>
+         </control>
+         <control>
+                   <type>checkbox</type>
+                   <title>Default initialization</title>
+                   <value>false</value>
+                   <gamsName>iniAddVars</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <userLevels>administrator,developer,debugger</userLevels>
+                   <tooltip><![CDATA[Additional GAMS code which tries to define recursively a starting point for variables from
+                   the start point (baseline, updated t-1 results) and the shock.<br/>
+                   Often is too computing time conuming to pay off, but might help in case of numerical problems]]></tooltip>
+         </control>
+         <control>
+                   <type>checkbox</type>
+                   <title>Initialize factor demands</title>
+                   <value>false</value>
+                   <gamsName>iniXfac</gamsName>
+                   <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation</tasks>
+                   <userLevels>administrator,developer,debugger</userLevels>
+                   <tooltip><![CDATA[Update factor demands based on updated factor prices.]]></tooltip>
+         </control>
+
+
+
+         <control>
+                   <type>Separator</type>
+                   <title>Solver control</title>
+         </control>
+         <control>
+                   <type>singlelist</type>
+                   <title>Solve algorithm</title>
+                   <value>CNS</value>
+                   <options>MCP "Mixed complementary programming",CNS "Square system",DNLP "Non-linear program"</options>
+                   <gamsName>solveType</gamsName>
+                   <tooltip><![CDATA[Recommended option is to CNS. Use MCP when equalities should be turned into inequalities if variables hit bounds.<br/>
+                   DNLP will let CONOPT4 use an algorithm which is usally slower than CNS, but less prone to stuggle with numerical problems.<br/>
+                   The code will automatically use DNLP after the first CNS solve failed. Selecting DNLP will use it already for the first solve.]]>
+                   </tooltip>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+         </control>
+         <control>
+                   <type>singlelist</type>
+                   <title>MCP Solver</title>
+                   <value>Path</value>
+                   <options>PATH,NLPEC</options>
+                   <gamsName>MCPSolver</gamsName>
+                   <dependsOn>Solve algorithm:MCP</dependsOn>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+                   <tooltip>NLPEC will use CONOPT4 after the a MCP version of the model was contructed</tooltip>
+         </control>
+         <control>
+                   <type>singlelist</type>
+                   <title>QCP Solver</title>
+                   <value>CONOPT4</value>
+                   <options>CONOPT4,CPLEX</options>
+                   <gamsName>QCPSolver</gamsName>
+                   <tasks>Prepare GTAP SAM,Match to macro SAM</tasks>
+                   <tooltip>Solver to use for SAM balancing problems. CPLEX is usually faster compared to CONOPT4</tooltip>
+         </control>
+         <control>
+                   <type>checkBox</type>
+                   <title>Paired</title>
+                   <value>false</value>
+                   <gamsName>paired</gamsName>
+                   <tooltip><![CDATA[Uses a version of the model where equations and variables are paired.<br/>
+                   Using the paired version with changes of closures rules in the shock file will require redirections (addititional model statements)<br/>
+                   The paired version is useful to find errors in case shocks suddenly results in a model where the number of variables and equations
+                   are not longer equal.]]></tooltip>
+                   <dependsOn>Solve algorithm:MCP</dependsOn>
+                   <userLevls>developer,debugger,runner:hide</userLevls>
+         </control>
+         <control>
+                   <type>checkBox</type>
+                   <title>Scale model</title>
+                   <value>true</value>
+                   <gamsName>scaleModel</gamsName>
+                   <userLevls>developer</userLevls>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+                   <tooltip><![CDATA[Scales equations by the min(1.E-3, variable value in t-1). Usually improves<br/>
+                   numerical stability but can slow down especially PATH]]></tooltip>
+         </control>
+         <control>
+                   <type>checkBox</type>
+                   <title>Automated scaling of SAM</title>
+                   <value>true</value>
+                   <gamsName>scaleSAM</gamsName>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+                   <tooltip><![CDATA[Scales SAM such that GDP is equal to a given number. Can improve numerical stability<br/>
+                   but implies that values shown in equation listings are scaled relative to the original SAM.]]></tooltip>
+                   <userLevls>developer,debugger,runner:hide</userLevls>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Base for auto-scale 1E+</title>
+                   <value>5</value>
+                   <range>3,8,1</range>
+                   <options>int</options>
+                   <gamsName>autoScaleBase</gamsName>
+                   <userLevls>developer,debugger,runner:hide</userLevls>
+                   <tasks>Baseline</tasks>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Optfile</title>
+                   <value>2</value>
+                   <range>0,4,1</range>
+                   <options>int</options>
+                   <gamsName>optfile</gamsName>
+                   <dependsOn>Solve algorithm:MCP</dependsOn>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Iterlim</title>
+                   <value>200</value>
+                   <range>0,100000,1</range>
+                   <options>int</options>
+                   <gamsName>option iterlim</gamsName>
+                   <tooltip>Maximum number of iterations allowed for one solve by solver.</tooltip>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Reslim</title>
+                   <value>30</value>
+                   <range>0,180,1</range>
+                   <options>int</options>
+                   <gamsName>option reslim</gamsName>
+                   <tooltip>Maximum number of seconds allowed for one solve by solver.</tooltip>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Reslim first solve CNS</title>
+                   <value>5</value>
+                   <range>0,180,1</range>
+                   <options>int</options>
+                   <gamsName>reslimFirstSolve</gamsName>
+                   <dependsOn>Solve algorithm:CNS</dependsOn>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+                   <tooltip>Maximum number of seconds allowed for first solve by solver in CNS mode.</tooltip>
+         </control>
+         <control>
+                   <type>spinner</type>
+                   <title>Maximum of repeated solves</title>
+                   <value>6</value>
+                   <range>1,15,1</range>
+                   <options>int</options>
+                   <gamsName>maxIter</gamsName>
+                   <tasks>Simulation,Baseline,Stochastic simulation,Sensitivity analysis</tasks>
+                   <userLevels>administrator,developer,debugger,runner:hide</userLevels>
+                   <tooltip>For MCP, repeated solve will try different option file. For CNS, restarts will switch to DNLP.</tooltip>
+         </control>
+
+         <control>
+                   <type>Separator</type>
+                   <title>Options for solve outputs</title>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+
+
+         <control>
+                   <type>singlelist</type>
+                   <title>Solprint</title>
+                   <value>On</value>
+                   <options>On "Full equations and variable listing",Off "Only summary",Silent "No output at all"</options>
+                   <gamsName>option solprint</gamsName>
+                   <userLevels>administrator,developer,debugger</userLevels>
+         </control>
+
+         <control>
+                   <type>spinner</type>
+                   <title>Limrow</title>
+                   <value>0</value>
+                   <range>0,100000,1</range>
+                   <options>int</options>
+                   <gamsName>option limrow</gamsName>
+                   <userLevels>administrator,developer,debugger,runner:hide</userLevels>
+                   <tooltip>Shows for each equation the Jacobian entries and the LHS</tooltip>
+         </control>
+
+         <control>
+                   <type>spinner</type>
+                   <title>Limcol</title>
+                   <value>0</value>
+                   <range>0,100000,1</range>
+                   <options>int</options>
+                   <gamsName>option limcol</gamsName>
+                   <userLevels>administrator,developer,debugger,runner:hide</userLevels>
+                   <tooltip>Shows for each variables the Jacobian entries, bounds and starting value</tooltip>
+         </control>
+
+         <task>
+                  <name>Baseline</name>
+                  <gamsFile>run</gamsFile>
+                  <incFile>fromGuiToRun</incFile>
+
+                  <regionDim>0,Regions</regionDim>
+                  <dim5Dim>1,Items</dim5Dim>
+                  <productDim>2,Products</productDim>
+                  <activityDim>3,Sectors and institutions</activityDim>
+                  <yearDim>4,Years</yearDim>
+                  <scenDim>5,Scenarios</scenDim>
+
+                  <gdxSymbol>p_toGui</gdxSymbol>
+                  <filemask>.*gdx$</filemask>
+                  <filter>Year,outYearsSel,starts_and_ends_with</filter>
+                  <filter>Data set,dataSetSel,file_starts_with</filter>
+
+         </task>
+         <task>
+                  <name>Simulation</name>
+                  <gamsFile>run</gamsFile>
+                  <gdxSymbol> </gdxSymbol>
+                  <incFile>fromGuiToRun</incFile>
+
+                  <regionDim>0,Regions</regionDim>
+                  <dim5Dim>1,Items</dim5Dim>
+                  <productDim>2,Products</productDim>
+                  <activityDim>3,Sectors and institutions</activityDim>
+                  <yearDim>4,Years</yearDim>
+                  <scenDim>5,Scenarios</scenDim>
+
+                  <gdxSymbol>p_toGui</gdxSymbol>
+                  <filemask>.*gdx$</filemask>
+                  <filter>Year,outYearsSel,starts_and_ends_with</filter>
+                  <filter>Data set,dataSetSel,file_starts_with</filter>
+         </task>
+         <task>
+                  <name>Stochastic simulation</name>
+                  <gamsFile>run_stoch</gamsFile>
+                  <gdxSymbol> </gdxSymbol>
+                  <incFile>fromGuiToRun</incFile>
+
+                  <regionDim>0,Regions</regionDim>
+                  <dim5Dim>1,Items</dim5Dim>
+                  <productDim>2,Products</productDim>
+                  <activityDim>3,Sectors and institutions</activityDim>
+                  <yearDim>4,Years</yearDim>
+                  <dim6Dim>5,Draws</dim6Dim>
+                  <scenDim>6,Scenarios</scenDim>
+
+                  <gdxSymbol>p_toGui</gdxSymbol>
+                  <filemask>.*gdx$</filemask>
+                  <filter>Year,outYearsSel,starts_and_ends_with</filter>
+                  <filter>Data set,dataSetSel,file_starts_with</filter>
+                  <userLevls>developer</userLevls>
+         </task>
+         <task>
+                  <name>Sensitivity analysis</name>
+                  <gamsFile>run_sens</gamsFile>
+                  <gdxSymbol> </gdxSymbol>
+                  <incFile>fromGuiToRun</incFile>
+
+                  <regionDim>0,Regions</regionDim>
+                  <dim5Dim>1,Items</dim5Dim>
+                  <productDim>2,Products</productDim>
+                  <activityDim>3,Sectors and institutions</activityDim>
+                  <yearDim>4,Years</yearDim>
+                  <dim6Dim>5,Draws</dim6Dim>
+                  <scenDim>6,Scenarios</scenDim>
+
+                  <gdxSymbol>p_toGui</gdxSymbol>
+                  <filemask>.*gdx$</filemask>
+                  <filter>Year,outYearsSel,starts_and_ends_with</filter>
+                  <filter>Data set,dataSetSel,file_starts_with</filter>
+                  <userLevls>developer</userLevls>
+         </task>
+         <task>
+                  <name>Load GTAP data</name>
+                  <gamsFile>loadGTAP</gamsFile>
+                  <incFile>loadGtap_inc</incFile>
+         </task>
+         <task>
+                  <name>Prepare GTAP SAM</name>
+                  <gamsFile>gtapSAMV6</gamsFile>
+                  <gdxSymbol> </gdxSymbol>
+                  <incFile>fromGuiToRun</incFile>
+         </task>
+         <task>
+                  <name>Match to macro SAM</name>
+                  <gamsFile>samEst</gamsFile>
+                  <incFile>fromGuiToRun</incFile>
+                  <userLevls>developer</userLevls>
+                  <gdxSymbol>p_SAMReport</gdxSymbol>
+                  <filemask>sam_*.*gdx$</filemask>
+                  <productDim>0,SAM rows</productDim>
+                  <activityDim>1,SAM columns</activityDim>
+                  <regionDim>2,States</regionDim>
+                  <scenDim>4,Versions</scenDim>
+                  <dim5Dim>3,Results</dim5Dim>
+                  <userLevls>developer</userLevls>
+         </task>
+
+         <workstep>
+            <name>Build data base</name>
+            <tasks>Load GTAP data,Prepare GTAP SAM,Match to macro SAM</tasks>
+            <userLevls>developer,runner</userLevls>
+         </workstep>
+         <workstep>
+            <name>Simulation</name>
+            <tasks>Baseline,Simulation,Sensitivity analysis,Stochastic simulation,Sensitivity analysis</tasks>
+         </workstep>
+
+         <toolname><attr>Manage</attr></toolname>
+         <useOnOff><attr>true</attr></useOnOff>
+         <userName><attr>undefined</attr></userName>
+
+         <xmlTables><attr>ManageTables.xml</attr></xmlTables>
+         <allowAdmin><attr>yes</attr></allowAdmin>
+</GGIG>

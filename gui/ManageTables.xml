@@ -1,0 +1,2897 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<tables  xmlns:xi="http://www.w3.org/2001/XInclude">
+<table>
+   <theme>Summary tables</theme>
+   <name>Overview</name>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <itemDim>product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <item>
+      <key>gdpMp</key>
+      <itemName>Real GDP at market prices</itemName>
+   </item>
+   <item>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+      <key>gdpMp</key>
+      <itemName>Real GDP, p.a. change</itemName>
+      <eval>((VAL/VAL[*,*,*,--1,*,*])^(1/(VAL[*,tot,years,*,*,V]-VAL[*,tot,years,--1,*,V]))-1)*100</eval>
+   </item>
+   <item>
+      <key>gdpMp</key>
+      <itemName>Real GDP at market prices, per capita</itemName>
+      <eval>VAL/VAL[*,tot,pop,*,*,V]*1000</eval>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Real Household consumption, per capita</itemName>
+      <eval>VAL/VAL[*,tot,pop,*,*,V]*1000</eval>
+   </item>
+
+   <!-- real expenditure shares in real GDP -->
+
+   <item>
+      <key>yf</key>
+      <itemName>Private consumption, real on real GDP</itemName>
+      <eval>VAL/VAL[*,*,gdpMP,*,*,*]*100</eval>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Government consumption, real, share on real GDP</itemName>
+      <eval>VAL/VAL[*,*,gdpMP,*,*,*]*100</eval>
+   </item>
+   <item>
+      <key>pinv</key>
+      <itemName>Private investments, real share on real GDP</itemName>
+      <eval>VAL/VAL[*,*,gdpMP,*,*,*]*100</eval>
+   </item>
+   <item>
+      <key>stb</key>
+      <itemName>Stock Changes, real share on real GDP</itemName>
+      <eval>VAL/VAL[*,*,gdpMP,*,*,*]*100</eval>
+   </item>
+   <item>
+      <key>ginv</key>
+      <itemName>Government investments, real, share on real GDP</itemName>
+      <eval>VAL/VAL[*,*,gdpMP,*,*,*]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Net exports, real, share on real GDP</itemName>
+      <eval>VAL/VAL[*,*,gdpMP,*,*,*]*100</eval>
+   </item>
+
+   <!-- sectoral shares -->
+   <item>
+      <key>bot</key>
+      <itemName>Agriculture, GDP contribution</itemName>
+      <eval>VAL[*,a-agr,gdp-cont,*,*,Q]/VAL[*,a-sum,gdp-cont,*,*,Q]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Industry, GDP contribution</itemName>
+      <eval>VAL[*,a-man,gdp-cont,*,*,Q]/VAL[*,a-sum,gdp-cont,*,*,Q]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Services, GDP contribution</itemName>
+      <eval>VAL[*,a-srv,gdp-cont,*,*,Q]/VAL[*,a-sum,gdp-cont,*,*,Q]*100</eval>
+   </item>
+   <!-- sectoral shares -->
+   <item>
+      <key>bot</key>
+      <itemName>Agriculture, share on VA</itemName>
+      <eval>VAL[*,a-agr,VA-agg,*,*,V]/VAL[*,a-sum,VA-agg,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Industry, share on VA</itemName>
+      <eval>VAL[*,a-man,VA-agg,*,*,V]/VAL[*,a-sum,VA-agg,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Services, share on VA</itemName>
+      <eval>VAL[*,a-srv,VA-agg,*,*,V]/VAL[*,a-sum,VA-agg,*,*,V]*100</eval>
+   </item>
+   <!-- sectoral shares -->
+   <item>
+      <key>bot</key>
+      <itemName>Agriculture, share on GDP</itemName>
+      <eval>VAL[*,gdpMp,c-agr,*,*,V]/VAL[*,gdpMp,c-sum,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Industry, share on GDP</itemName>
+      <eval>VAL[*,gdpMp,c-man,*,*,V]/VAL[*,gdpMp,c-sum,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Services, share on GDP</itemName>
+      <eval>VAL[*,gdpMp,c-srv,*,*,V]/VAL[*,gdpMp,c-sum,*,*,V]*100</eval>
+   </item>
+
+   <!-- external balance and fiscal aggregates  -->
+   <item>
+      <key>bot</key>
+      <itemName>Net exports, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>Savf</key>
+      <itemName>Foreign investments, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>fundf</key>
+      <itemName>Foreign new debt, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>fNetTrans</key>
+      <itemName>Net transfers from ROW, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>fDebtPay</key>
+      <itemName>Debt payments to ROW, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ygov</key>
+      <itemName>Tax revenues, share on GDP</itemName>
+      <eval>VAL[*,govAcc,taxRev,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ygov</key>
+      <itemName>Non-tax revenues, share on GDP</itemName>
+      <eval>(VAL[*,*,*,*,*,V] - VAL[*,govAcc,taxRev,*,*,V])/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ygov</key>
+      <itemName>Total Government revenues, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ygov</key>
+      <itemName>Government Capital Expenditure, share on GDP</itemName>
+      <eval>VAL[*,govAcc,invest,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ygov</key>
+      <itemName>Government Current Expenditure, share on GDP</itemName>
+      <eval>(VAL[*,govAcc,consum,*,*,V] + VAL[*,govAcc,transS,*,*,V])/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ygov</key>
+      <itemName>Government Total Expenditure, share on GDP</itemName>
+      <eval>(VAL[*,govAcc,invest,*,*,V]+VAL[*,govAcc,consum,*,*,V] + VAL[*,govAcc,transS,*,*,V])/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>PrimaryBal</key>
+      <itemName>Primary Balance, share on GDP</itemName>
+      <eval>VAL[*,govAcc,PrimaryBal,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>intPay</key>
+      <itemName>Interest Payments, share on GDP</itemName>
+      <eval>VAL[*,govAcc,intPay,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>FiscalBal</key>
+      <itemName>Fiscal balance, share on GDP</itemName>
+      <eval>VAL[*,govAcc,FiscalBal,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>princPay</key>
+      <itemName>Principal Payments, share on GDP</itemName>
+      <eval>VAL[*,govAcc,princPay,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>GovBal</key>
+      <itemName>Goverment balance (borrowing requirement), share on GDP</itemName>
+      <eval>VAL[*,govAcc,GovBal,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>debtStkT</key>
+      <itemName>Public debt, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>debtStkF</key>
+      <itemName>Foreign public debt, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+
+   <!-- emissions  -->
+
+   <item>
+      <key>GHGs</key>
+      <itemName>GHG Emissions</itemName>
+      <unit>mill t CO2 equ. per annum</unit>
+   </item>
+   <item>
+      <key>GHGs</key>
+      <itemName>GHG Emissions per real GDP</itemName>
+      <eval>VAL[*,*,*,*,*,Q]/VAL[*,*,gdpMP,*,*,Q]</eval>
+   </item>
+
+   <!-- population -->
+   <item>
+      <key>Pop</key>
+      <itemName>Population</itemName>
+      <eval>VAL[*,tot,pop,*,*,V]</eval>
+      <unit>milion</unit>
+   </item>
+   <item>
+       <key>GHGs</key>
+       <itemName>GHG Emissions per capita</itemName>
+       <unit>kg CO2 equ. per annum</unit>
+       <eval>VAL[*,*,*,*,*,Q]/VAL[*,tot,pop,*,*,V]*1000</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Key indicators, scenario comparison, line chart</name>
+   <defpivot>rows=scenarios;columns=years;columnGroup=items;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <itemDim>product</itemDim>
+   <defView>Line chart</defView>
+   <item>
+      <key>gdpMp</key>
+      <itemName>Real GDP at market prices</itemName>
+   </item>
+   <item>
+      <key>mmUh</key>
+      <itemName>Money metric</itemName>
+      <eval>VAL[*,htot,*,*,*,V]</eval>
+   </item>
+   <item>
+      <key>debtStkT</key>
+      <itemName>Public debt, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>GHGs</key>
+      <itemName>GHG Emissions</itemName>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>SDG indicators</name>
+   <defpivot>rows=items;columns=years;columnGroup=scenarios;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <itemDim>product</itemDim>
+   <item>
+      <key>SDG1</key>
+      <itemName>SDG1 No poverty: Income of poorest household (S)</itemName>
+   </item>
+   <item>
+      <key>SDG2.1</key>
+      <itemName>SDG2 Zero hunger: Minimum calories supply to any household (S)</itemName>
+       <unit>Calories per cap and day</unit>
+   </item>
+   <item>
+      <key>SDG2.2</key>
+      <itemName>SDG2 Zero hunger: Minimum protein supply to any household (S)</itemName>
+       <unit>gr Protein per cap and day</unit>
+   </item>
+   <item>
+      <key>SDG3.1</key>
+      <itemName>SDG3 Good health and well being: exposed air emissions (S)</itemName>
+       <unit>PMFT emitted, cululative over five years</unit>
+   </item>
+   <item>
+      <key>SDG3.2</key>
+      <itemName>SDG3 Good health and well being: domestic consumption of health and social services (S)</itemName>
+      <unit>Cnst Mio USD per cap</unit>
+   </item>
+   <item>
+      <key>SDG3.3</key>
+      <itemName>SDG3 Good health and well being: share of domestic consumption of health and social services (S)</itemName>
+      <unit>%</unit>
+   </item>
+   <item>
+      <key>SDG4.1</key>
+      <itemName>SDG4 Quality education: domestic consumption of educational services (S)</itemName>
+       <unit>Cnst Mio USD per cap</unit>
+   </item>
+   <item>
+      <key>SDG4.2</key>
+      <itemName>SDG4 Quality education: share of domestic consumption of educational services (S)</itemName>
+      <unit>%</unit>
+   </item>
+   <item>
+      <key>SDG5.1</key>
+      <itemName>SDG5 Gender equality: Wage gap (S)</itemName>
+      <unit>%</unit>
+   </item>
+   <item>
+      <key>SDG5.2</key>
+      <itemName>SDG5 Gender equality: Sahre of female wages on total (S)</itemName>
+      <unit>%</unit>
+   </item>
+   <item>
+      <key>SDG6</key>
+      <itemName>SDG6: Clean water and sanitation: Household per capital consumption of water services (B)</itemName>
+       <unit>Cnst USD per cap</unit>
+   </item>
+   <item>
+      <key>SDG7.1</key>
+      <itemName>SDG7 Affordable and clean energy: Household energy price index (S)</itemName>
+   </item>
+   <item>
+      <key>SDG7.2</key>
+      <itemName>SDG7 Affordable and clean energy: GHG emission intensity of power generation (S)</itemName>
+   </item>
+   <item>
+      <key>SDG8</key>
+      <itemName>SDG8 Decent work and economic growth: Real GDP per capita (E)</itemName>
+       <unit>Cnst USD per cap</unit>
+   </item>
+   <item>
+      <key>SDG9.1</key>
+      <itemName>SDG9 Industry, innovation and infrastructure: Construction demand by government per capita (E)</itemName>
+       <unit>Cnst USD per cap</unit>
+   </item>
+   <item>
+      <key>SDG9.2</key>
+      <itemName>SDG9 Industry, innovation and infrastructure: Economy wide demand for information and communication per capita (E)</itemName>
+       <unit>Cnst USD per cap</unit>
+   </item>
+   <item>
+      <key>SDG9.3</key>
+      <itemName>SDG9 Industry, innovation and infrastructure: Contribution of industry to Value Added (E)</itemName>
+       <unit>%</unit>
+   </item>
+   <item>
+      <key>SDG10.1</key>
+      <itemName>SDG10 Reduced inequality: Gini Index (E)</itemName>
+   </item>
+   <item>
+      <key>SDG10.2</key>
+      <itemName>SDG10 Reduced inequality: Contribution of labor to Value Added (E)</itemName>
+   </item>
+   <item>
+      <key>SDG11.1</key>
+      <itemName>SDG11 Sustainable cities and communities: GHG emissions per capita (S)</itemName>
+   </item>
+   <item>
+      <key>SDG11.2</key>
+      <itemName>SDG11 Sustainable cities and communities: Built-up land per capita (S)</itemName>
+   </item>
+   <item>
+      <key>SDG12.1</key>
+      <itemName>SDG12 Responsible consumption and production: GHG emission intensity of GDP (S)</itemName>
+   </item>
+   <item>
+      <key>SDG12.2</key>
+      <itemName>SDG12 Economy-wide consumption of fossil energy per capita (S)</itemName>
+   </item>
+   <item>
+      <key>SDG12.3</key>
+      <itemName>SDG12 Irrigation water use per unit of output of irrigated activities (S)</itemName>
+   </item>
+   <item>
+      <key>SDG13</key>
+      <itemName>SDG13 Climate action: GHG emissions (B)</itemName>
+   </item>
+   <item>
+      <key>SDG14</key>
+      <itemName>SDG14 Life below water: Natural resource use in fisheries (B)</itemName>
+   </item>
+   <item>
+      <key>SDG15</key>
+      <itemName>SDG15 Life on land: Loss of natural vegetation (B)</itemName>
+       <unit>Mio ha</unit>
+   </item>
+   <item>
+      <key>SDG16.1</key>
+      <itemName>SDG16 Peace, Justice and Strong institutions: Government debt over GDP (S)</itemName>
+   </item>
+   <item>
+      <key>SDG16.2</key>
+      <itemName>SDG16 Peace, Justice and Strong institutions: Public administration supply per cap (S)</itemName>
+   </item>
+   <item>
+      <key>SDG17</key>
+      <itemName>SDG17 Partnership for the goals</itemName>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <clone>Key indicators, scenario comparison, line chart</clone>
+   <name>Key indicators, scenario comparison, spider chart</name>
+   <defpivot>rows=dim5;columns=items;columnGroup=scenarios;</defpivot>
+   <defView>Spider chart</defView>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Overview, nomimal share</name>
+   <clone>Overview</clone>
+   <item>
+      <key>gdpMp</key>
+      <itemName>Nominal GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]</eval>
+   </item>
+   <item>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+      <key>gdpMp</key>
+      <itemName>Nominal GDP, p.a. change</itemName>
+      <eval>((VAL[*,*,*,*,*,V]/VAL[*,*,*,--1,*,V])^(1/(VAL[*,tot,years,*,*,V]-VAL[*,tot,years,--1,*,V]))-1)*100</eval>
+   </item>
+   <!-- expenditure shares in nominal GDP -->
+   <item>
+      <key>yf</key>
+      <itemName>Private consumption, share on nominal GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Government consumption, share on nomimal GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>pinv</key>
+      <itemName>Private investments, share on nomimal GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>stb</key>
+      <itemName>Stock Changes, share on nomial GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>ginv</key>
+      <itemName>Government investments, share on nominal GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Net exports, share on nomial GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Overview, in USD</name>
+   <clone>Overview</clone>
+   <evalAll>%VAL%/VAL[*,tot,usd,*,*,V]</evalAll>
+   <drop>Population</drop>
+   <item>
+      <key>Pop</key>
+      <itemName>Population</itemName>
+      <eval>VAL[*,tot,pop,*,*,V]*VAL[*,tot,usd,*,*,V]</eval>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Overview, line chart, scenario comparison</name>
+   <clone>Overview</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Node view, in nominal terms</name>
+   <defpivot>rows=items;columns=scenarios;</defpivot>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <defView>Network</defView>
+   <dim5Sel>V_regex</dim5Sel>
+   <itemDim>product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <!-- GDP at market prices by final demander -->
+   <item>
+      <key>gdpmp</key>
+      <itemName>GDP at market prices</itemName>
+      <node>GDP</node>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Government consumption</itemName>
+      <fromEdge>Gov inc</fromEdge><node>Gov cons</node><edge>GDP</edge>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Household consumption</itemName>
+      <fromEdge>Housh inc</fromEdge><node>Housh cons</node><edge>GDP</edge>
+   </item>
+   <item>
+      <key>yInv</key>
+      <itemName>Investments</itemName>
+      <node>Investments</node><edge>GDP</edge>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>B.O.T.</itemName>
+      <node>BOT</node><edge>GDP</edge>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfers to Gov</itemName>
+      <eval>VAL[*,GovAcc,transy,*,*,V]</eval>
+      <node>Transfers to Gov</node><edge>Gov inc</edge>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfer to ROW</itemName>
+      <eval>VAL[*,rowAcc,transY,*,*,V]</eval>
+      <node>Transfers to Row</node><edge>Row</edge>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfers to Households</itemName>
+      <eval>VAL[*,htot,transY,*,*,V]</eval>
+      <node>Transfers to Hous</node><edge>Housh inc</edge>
+   </item>
+   <!-- Expenditures Row  -->
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Row</itemName>
+      <eval>VAL[*,RowAcc,transs,*,*,V]</eval>
+      <edge>val_Row transfers</edge><node>Row</node>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Row to Households</itemName>
+      <eval>VAL[*,rowAcc,hTot,*,*,V]</eval>
+      <fromEdge>Row transfers</fromEdge><node>Row transfers to Hous</node><edge>Transfers to Hous</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Row to Government</itemName>
+      <eval>VAL[*,rowAcc,GovAcc,*,*,V]</eval>
+      <fromEdge>Row transfers</fromEdge><node>Row transfers to Gov</node><edge>Transfers to Gov</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Row to Enterprises</itemName>
+      <eval>VAL[*,rowAcc,EntAcc,*,*,V]</eval>
+      <fromEdge>Row transfers</fromEdge><node>Row transfers to Entr</node><edge>Transfers to Entr</edge>
+   </item>
+   <!-- Expenditures Government  -->
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Government</itemName>
+      <eval>VAL[*,GovAcc,transs,*,*,V]</eval>
+      <edge>val_Gov transfers</edge><node>Gov inc</node>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Government to Enterprices</itemName>
+      <eval>VAL[*,GovAcc,entAcc,*,*,V]</eval>
+      <node>Gov transfers</node><edge>val_Transfers to Entr</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Government to Households</itemName>
+      <eval>VAL[*,GovAcc,htot,*,*,V]</eval>
+      <node>Gov transfers</node><edge>val_Transfers to Hous</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Government to ROW</itemName>
+      <eval>VAL[*,GovAcc,rowAcc,*,*,V]</eval>
+      <node>Gov transfers</node><edge>Transfers to Row</edge>
+   </item>
+   <item>
+      <key>debpay</key>
+      <itemName>Debt payments by Gov</itemName>
+      <eval>VAL[*,GovAcc,debpay,*,*,V]</eval>
+      <edge>val_Debt pay Gov</edge><node>Gov inc</node>
+   </item>
+   <item>
+      <key>debtpay</key>
+      <itemName>Debt payments by Gov to Enterprises</itemName>
+      <eval>VAL[*,entAcc,debtpay,*,*,V]</eval>
+      <node>Debt pay Gov</node><edge>Debt inc Entr</edge>
+   </item>
+   <item>
+      <key>debtpay</key>
+      <itemName>Debt payments by Gov to Households</itemName>
+      <eval>VAL[*,htot,debtpay,*,*,V]</eval>
+      <node>Debt pay Gov</node><edge>Debt inc Hous</edge>
+   </item>
+   <item>
+      <key>debtpay</key>
+      <itemName>Foreign debt payments by Gov</itemName>
+      <eval>VAL[*,rowAcc,debtpay,*,*,V]</eval>
+      <node>Debt pay Gov</node><edge>Debt inc foreign</edge>
+   </item>
+   <!-- Government account revenues  -->
+   <item>
+      <key>GovExp</key>
+      <itemName>Government income</itemName>
+      <eval>VAL[*,tot,GovExp,*,*,V]+VAL[*,tot,Savg,*,*,V]</eval>
+      <node>Gov inc</node><edge>Income</edge>
+   </item>
+   <item>
+      <key>taxRev</key>
+      <itemName>Tax revenues</itemName>
+      <eval>VAL[*,GovAcc,taxRev,*,*,V]</eval>
+      <node>Tax income</node><edge>Gov inc</edge>
+   </item>
+   <item>
+      <key>facty</key>
+      <itemName>Factor income Government</itemName>
+      <eval>VAL[*,GovAcc,facty,*,*,V]</eval>
+      <fromEdge>Fact inc</fromEdge><node>Fact inc Gov</node><edge>Gov inc</edge>
+   </item>
+   <item>
+      <key>Borrow</key>
+      <itemName>New Government debt</itemName>
+      <eval>VAL[*,GovAcc,Borrow,*,*,V]</eval>
+      <node>Borrow Gov</node><edge>Gov inc</edge>
+   </item>
+   <!-- Household account revenues  -->
+   <item>
+      <key>income</key>
+      <itemName>Household income</itemName>
+      <eval>VAL[*,htot,income,*,*,V]</eval>
+      <node>Housh inc</node>
+   </item>
+   <item>
+      <key>facty</key>
+      <itemName>Factor income of Households</itemName>
+      <eval>VAL[*,facty,htot,*,*,V]</eval>
+      <fromEdge>Fact inc</fromEdge><node>Fact inc Hous</node><edge>Housh inc</edge>
+   </item>
+   <item>
+      <key>debtpay</key>
+      <itemName>Debt payments to Households</itemName>
+      <eval>VAL[*,htot,debtpay,*,*,V]</eval>
+      <node>Debt inc Hous</node><edge>Housh inc</edge>
+   </item>
+   <!-- Enterprice income account  -->
+   <item>
+      <key>income</key>
+      <itemName>Enterprise income</itemName>
+      <eval>VAL[*,entAcc,Entry,*,*,V]</eval>
+      <node>Entr inc</node>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfers to Enterprises</itemName>
+      <eval>VAL[*,entAcc,transY,*,*,V]</eval>
+      <node>Transfers to Entr</node><edge>Entr inc</edge>
+   </item>
+   <item>
+      <key>facty</key>
+      <itemName>Factor income of Enterprises</itemName>
+      <eval>VAL[*,entAcc,facty,*,*,V]</eval>
+      <fromEdge>Fact inc</fromEdge><node>Fact inc Entr</node><edge>Entr inc</edge>
+   </item>
+   <item>
+      <key>debtpay</key>
+      <itemName>Debt payments to Enterprises</itemName>
+      <eval>VAL[*,entAcc,debtpay,*,*,V]</eval>
+      <node>Debt inc Entr</node><edge>Entr inc</edge>
+   </item>
+   <!-- Expenditures Households  -->
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Households</itemName>
+      <eval>VAL[*,htot,transs,*,*,V]</eval>
+      <edge>val_Housh transfers</edge><node>Housh inc</node>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Households to ROW</itemName>
+      <eval>VAL[*,htot,rowAcc,*,*,V]</eval>
+      <node>Housh transfers</node><edge>Transfers to Row</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Households to Enterprices</itemName>
+      <eval>VAL[*,htot,entAcc,*,*,V]</eval>
+      <node>Housh transfers</node><edge>Transfers to Entr</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Households to Gov</itemName>
+      <eval>VAL[*,htot,GovAcc,*,*,V]</eval>
+      <node>Housh transfers</node><edge>Transfers to Gov</edge>
+   </item>
+   <item>
+      <key>tax</key>
+      <itemName>Household income tax</itemName>
+      <eval>VAL[*,htot,tax,*,*,V]</eval>
+      <fromEdge>Housh inc</fromEdge><node>Housh inc tax</node><edge>Tax income</edge>
+   </item>
+   <item>
+      <key>Borrow</key>
+      <itemName>Borrowing by Households</itemName>
+      <eval>VAL[*,htot,Borrow,*,*,V]</eval>
+      <fromedge>Housh Sav+Borr</fromedge>
+      <node>Housh Borrow to Gov</node><edge>Borrow Gov</edge>
+   </item>
+   <!-- Expenditures Enterprices  -->
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Enterprices</itemName>
+      <eval>VAL[*,entAcc,transs,*,*,V]</eval>
+      <edge>val_Entr transfers</edge><node>Entr inc</node>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Enterprices to Households</itemName>
+      <eval>VAL[*,entacc,htot,*,*,V]</eval>
+      <fromEdge>Entr transfers</fromEdge><node>Entr transfers to Hous</node><edge>Transfers to Hous</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Enterprices to ROW</itemName>
+      <eval>VAL[*,entAcc,rowAcc,*,*,V]</eval>
+      <fromEdge>Entr transfers</fromEdge><node>Entr transfers to Row</node><edge>Transfers to Row</edge>
+   </item>
+   <item>
+      <key>transs</key>
+      <itemName>Transfers by Enterprices to Gov</itemName>
+      <eval>VAL[*,entAcc,GovAcc,*,*,V]</eval>
+      <fromEdge>Entr transfers</fromEdge><node>Entr transfers to Gov</node><edge>Transfers to Gov</edge>
+   </item>
+   <item>
+      <key>Borrow</key>
+      <itemName>Borrowing by Enterprises</itemName>
+      <eval>VAL[*,entAcc,Borrow,*,*,V]</eval>
+      <fromEdge>Entr Sav+Borr</fromEdge><node>Entr Borrow to Gov</node><edge>Borrow Gov</edge>
+   </item>
+   <item>
+      <key>tax</key>
+      <itemName>Enterprise income tax</itemName>
+      <eval>VAL[*,entacc,tax,*,*,V]</eval>
+      <fromEdge>Entr inc</fromEdge><node>Entr inc tax</node><edge>Tax income</edge>
+   </item>
+   <!-- Investment account  -->
+   <item>
+      <key>yinv</key>
+      <itemName>Investments</itemName>
+      <eval>VAL[*,tot,yInv,*,*,V]</eval>
+      <node>Investments</node>
+   </item>
+   <item>
+      <key>ginv</key>
+      <itemName>Gov investments</itemName>
+      <fromEdge>Gov inc</fromEdge><node>Gov Inv</node><edge>Investments</edge>
+   </item>
+   <item>
+      <key>pinv</key>
+      <itemName>Priv investments</itemName>
+      <node>Priv Inv</node><edge>Investments</edge>
+   </item>
+   <!-- Savings account  -->
+   <item>
+      <key>Sav</key>
+      <itemName>Private Savings</itemName>
+      <eval>VAL[*,tot,pinv,*,*,V]</eval>
+      <node>Private Savings</node><edge>Priv Inv</edge>
+   </item>
+   <item>
+      <key>Savh</key>
+      <itemName>Household Savings + Borr</itemName>
+      <eval>VAL[*,tot,Savh,*,*,V]</eval>
+      <node>Housh Sav+Borr</node><fromEdge>Housh inc</fromEdge>
+   </item>
+   <item>
+      <key>Savh</key>
+      <itemName>Household Savings</itemName>
+      <eval>VAL[*,tot,Savh,*,*,V]-VAL[*,toth,borrow]</eval>
+      <fromedge>Housh Sav+Borr</fromedge><node>Housh Sav</node><edge>Private Savings</edge>
+   </item>
+   <item>
+      <key>Save</key>
+      <itemName>Enterprise Savings + Borrow</itemName>
+      <eval>VAL[*,tot,Save,*,*,V]</eval>
+      <node>Entr Sav+Borr</node><fromEdge>Entr inc</fromEdge>
+   </item>
+   <item>
+      <key>Save</key>
+      <itemName>Enterprise Savings</itemName>
+      <eval>VAL[*,tot,Save,*,*,V]-VAL[*,entAcc,Borrow,*,*,V]</eval>
+      <fromEdge>Entr Sav+Borr</fromEdge><node>Entr Sav</node><edge>Private Savings</edge>
+   </item>
+   <item>
+      <key>Savf</key>
+      <itemName>Foreign Savings + Borr</itemName>
+      <fromEdge>Row</fromEdge><node>Foreign Sav+Borr</node>
+   </item>
+   <item>
+      <key>Savf</key>
+      <itemName>Foreign Savings</itemName>
+      <eval>VAL[*,tot,Savf,*,*,V]-VAL[*,rowAcc,Borrow,*,*,V]</eval>
+      <fromEdge>Foreign Sav+Borr</fromEdge><node>Foreign Sav</node><edge>Private Savings</edge>
+   </item>
+   <!-- Row account  -->
+   <item>
+      <key>bot</key>
+      <itemName>Row account</itemName>
+      <node>Row</node>
+   </item>
+   <item>
+      <key>exp</key>
+      <itemName>Exports</itemName>
+      <fromEdge>BOT</fromEdge><node>Exports</node><edge>Row</edge>
+   </item>
+   <item>
+      <key>imp</key>
+      <itemName>Imports</itemName>
+      <fromEdge>Row</fromEdge><node>Imports</node><edge>BOT</edge>
+   </item>
+   <item>
+      <key>debtpay</key>
+      <itemName>Foreign debt income</itemName>
+      <eval>VAL[*,rowAcc,debtPay,*,*,V]</eval>
+      <node>Debt inc foreign</node><edge>Row</edge>
+   </item>
+   <item>
+      <key>Borrow</key>
+      <itemName>Foreign Borrowing</itemName>
+      <eval>VAL[*,rowAcc,Borrow,*,*,V]</eval>
+      <fromedge>Foreign Sav+Borr</fromedge><node>Foreign Borrow to Gov</node><edge>Borrow Gov</edge>
+   </item>
+
+   <!-- factor income distribution -->
+   <item>
+      <key>facty</key>
+      <itemName>Factor income</itemName>
+      <eval>(VAL[*,facty,htot,*,*,V]+VAL[*,entAcc,facty,*,*,V]+VAL[*,GovAcc,facty,*,*,V]+VAL[*,tot,ftax,*,*,V])</eval>
+      <node>Fact inc</node>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Factor income from land</itemName>
+      <eval>VAL[*,lnd,facty,*,*,V]</eval>
+      <fromEdge>GDP</fromEdge><node>Fact inc Land</node><edge>Fact inc</edge>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Factor income from labor</itemName>
+      <eval>VAL[*,lab,facty,*,*,V]</eval>
+      <fromEdge>GDP</fromEdge><node>Fact inc lab</node><edge>Fact inc</edge>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Factor income from capital</itemName>
+      <eval>VAL[*,cap,facty,*,*,V]</eval>
+      <fromEdge>GDP</fromEdge><node>Fact inc cap</node><edge>Fact inc</edge>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Factor income from natural resources</itemName>
+      <eval>VAL[*,nr,facty,*,*,V]</eval>
+      <fromEdge>GDP</fromEdge><node>Fact inc nr</node><edge>Fact inc</edge>
+   </item>
+   <!-- tax income composition -->
+   <item>
+      <key>ftax</key>
+      <itemName>Factor tax</itemName>
+      <fromEdge>Fact inc</fromEdge><node>Factor taxes</node><edge>Tax income</edge>
+   </item>
+   <item>
+      <key>tax</key>
+      <itemName>Other indirect taxes</itemName>
+      <eval>VAL[*,govAcc,taxrev,*,*,V] - VAL[*,tot,ftax,*,*,V]
+           -VAL[*,htot,tax,*,*,V] - VAL[*,entAcc,tax,*,*,V]</eval>
+      <fromEdge>GDP</fromEdge><node>Other taxes</node><edge>Tax income</edge>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <clone>Node view, in nominal terms</clone>
+   <name>Node view, in real terms</name>
+   <evalAll>%VAL%/VAL[*,tot,gdpmp,*,*,P]</evalAll>
+</table>
+
+
+<table>
+   <theme>Summary tables</theme>
+   <name>Real GDP components, normalized, line chart</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>product</itemDim>
+   <item>
+      <key>gdpMp</key>
+      <itemName>Real GDP at market prices</itemName>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Total consumption</itemName>
+      <eval>VAL[*,*,yf,*,*,*]+VAL[*,*,govExp,*,*,*]</eval>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Household consumption</itemName>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Government consumption</itemName>
+   </item>
+   <item>
+      <key>pinv</key>
+      <itemName>Private investments</itemName>
+   </item>
+   <item>
+      <key>stb</key>
+      <itemName>Stock Changes</itemName>
+   </item>
+   <item>
+      <key>ginv</key>
+      <itemName>Government investments</itemName>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Net exports</itemName>
+   </item>
+   <item>
+      <key>exp</key>
+      <itemName>Exports</itemName>
+   </item>
+   <item>
+      <key>imp</key>
+      <itemName>Imports</itemName>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Real GDP components, area chart</name>
+   <clone>Real GDP components, normalized, line chart</clone>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Area chart</defView>
+   <drop>Real GDP at market prices</drop>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Real GDP components, line chart, scenario comparison</name>
+   <clone>Real GDP components, normalized, line chart</clone>
+   <compareMode>VALUE</compareMode>
+   <defpivot>rows=scenarios;columns=years;columnGroup=items;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>true</showAxisTitles>
+   <drop>Real GDP at market prices</drop>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Real GDP components, scenario comparison, bar chart</name>
+   <clone>Real GDP components, normalized, line chart</clone>
+   <defpivot>rows=years;columns=product;columnGroup=scenarios;</defpivot>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <compareDim>Scenarios</compareDim>
+   <defView>Bar chart</defView>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>GDP components, scenario comparison, bar chart, one year</name>
+   <clone>Real GDP components, normalized, line chart</clone>
+   <defpivot>rows=items;columns=activity;columnGroup=scenarios;</defpivot>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <compareDim>Scenarios</compareDim>
+   <defView>Bar chart</defView>
+   <drop>Net exports</drop>
+   <barChartmaxSeries>10</barChartmaxSeries>
+   <showAxisTitles>false</showAxisTitles>
+   <FontSizeRelative>90</FontSizeRelative>
+   <barChart3D>false</barChart3D>
+   <barChartDrawOutline>true</barChartDrawOutline>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Fiscal indicators, normalized, line chart</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <itemDim>product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>govExp</key>
+      <itemName>Fiscal expenditures</itemName>
+      <eval>VAL[*,*,*,*,*,V]</eval>
+   </item>
+   <item>
+      <key>debtPay</key>
+      <itemName>Interest and principal</itemName>
+      <eval>VAL[*,*,*,*,*,V]</eval>
+   </item>
+   <item>
+      <key>taxRev</key>
+      <itemName>Tax revenues</itemName>
+      <eval>VAL[*,govAcc,taxRev,*,*,V]</eval>
+   </item>
+   <item>
+      <key>taxRev</key>
+      <itemName>Factor revenues, non-tax contributions</itemName>
+      <eval>VAL[*,govAcc,facRev,*,*,V]+VAL[*,govAcc,transY,*,*,V]</eval>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Budget deficit</itemName>
+      <eval>(VAL[*,*,*,*,*,V]-VAL[*,govAcc,taxRev,*,*,V]-VAL[*,govAcc,facRev,*,*,V]-VAL[*,govAcc,transY,*,*,V])</eval>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Fiscal indicators</name>
+   <clone>Fiscal indicators, normalized, line chart</clone>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Table</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+   <compareMode>VALUE</compareMode>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Fiscal indicators, share on GDP, normalized, line chart</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <itemDim>product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>govExp</key>
+      <itemName>Fiscal expenditures, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>debtPay</key>
+      <itemName>Interest and principal, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>taxRev</key>
+      <itemName>Tax and factor revenues, non-tax contributions, share on GDP</itemName>
+      <eval>(VAL[*,govAcc,taxRev,*,*,V]+VAL[*,govAcc,facRev,*,*,V]+VAL[*,govAcc,transY,*,*,V])/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Budget deficit, share on GDP</itemName>
+      <eval>(VAL[*,*,*,*,*,V]-VAL[*,govAcc,taxRev,*,*,V]-VAL[*,govAcc,facRev,*,*,V]-VAL[*,govAcc,transY,*,*,V])/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>debtStkT</key>
+      <itemName>Public debt, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>debtStkF</key>
+      <itemName>Foreign public debt, share on GDP</itemName>
+      <eval>VAL[*,*,*,*,*,V]/VAL[*,*,gdpMP,*,*,V]*100</eval>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Fiscal indicators, line chart, scenario comparison</name>
+   <clone>Fiscal indicators, normalized, line chart</clone>
+   <showAxisTitles>true</showAxisTitles>
+   <defpivot>rows=scenarios;columns=years;columnGroup=items;</defpivot>
+   <defView>Line chart</defView>
+   <compareMode>Value</compareMode>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Fiscal indicators, bar chart, one year</name>
+   <clone>Fiscal indicators, normalized, line chart</clone>
+   <defpivot>rows=scenarios;columns=activity;columnGroup=items;</defpivot>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <compareDim>Scenarios</compareDim>
+   <defView>Bar chart</defView>
+   <hideEmptyRows>false</hideEmptyRows>
+   <drop>Net exports</drop>
+   <barChartmaxSeries>10</barChartmaxSeries>
+   <showAxisTitles>false</showAxisTitles>
+   <FontSizeRelative>90</FontSizeRelative>
+   <barChart3D>false</barChart3D>
+   <barChartDrawOutline>true</barChartDrawOutline>
+   <blueishColors>true</blueishColors>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Sector shares, line chart, scenario comparison</name>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <itemDim>product</itemDim>
+   <defview>Line chart</defview>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+   <defpivot>rows=scenarios;columns=years;columnGroup=items;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>bot</key>
+      <itemName>Agriculture, share on VA</itemName>
+      <eval>VAL[*,a-agr,VA,*,*,V]/VAL[*,a-sum,VA,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Industry, share on VA</itemName>
+      <eval>VAL[*,a-man,VA,*,*,V]/VAL[*,a-sum,VA,*,*,V]*100</eval>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>Services, share on VA</itemName>
+      <eval>VAL[*,a-srv,VA,*,*,V]/VAL[*,a-sum,VA,*,*,V]*100</eval>
+   </item>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Demography</name>
+   <productSel>cohorts</productSel>
+   <productText>Cohorts</productText>
+   <activitySel>tot</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Summary tables</theme>
+   <name>Decomposition of GDP change</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <itemDim>Dim5</itemDim>
+   <dim5Sel>V</dim5Sel>
+   <productSel>prod</productSel>
+   <activitySel>inst</activitySel>
+   <item>
+      <key>V</key>
+      <itemName>% contribution to nominal GDP change</itemName>
+      <eval>(VAL-VAL[*,*,*,--1,*,*])/(VAL[*,tot,gdpMP,*,*,*]-VAL[*,tot,gdpMP,--1,*,*])*100</eval>
+   </item>
+   <item>
+      <key>V</key>
+      <itemName>change in nominal GDP</itemName>
+      <eval>(VAL-VAL[*,*,*,--1,*,*])</eval>
+   </item>
+   <item>
+      <key>V</key>
+      <itemName>Nominal GDP</itemName>
+      <eval>VAL</eval>
+   </item>
+   <item>
+      <key>Q</key>
+      <itemName>% contribution to real GDP change</itemName>
+      <eval>(VAL*VAL[*,*,*,--1,*,P]-VAL[*,*,*,--1,*,Q]*VAL[*,*,*,--1,*,P])/(VAL[*,tot,gdpMP,*,*,*]-VAL[*,tot,gdpMP,--1,*,*])*100</eval>
+   </item>
+   <item>
+      <key>Q</key>
+      <itemName>change in real GDP</itemName>
+      <eval>(VAL*VAL[*,*,*,--1,*,P]-VAL[*,*,*,--1,*,Q]*VAL[*,*,*,--1,*,P])</eval>
+   </item>
+   <item>
+      <key>Q</key>
+      <itemName>Real GDP</itemName>
+      <eval>VAL*VAL[*,*,*,--1,*,P]</eval>
+   </item>
+   <item>
+      <key>P</key>
+      <itemName>Price</itemName>
+      <eval>VAL[*,*,*,--1,*,P]</eval>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Economy wide totals</name>
+   <activitySel>tot_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>VQP</dim5Sel>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <item>
+      <key>gdpMp</key>
+      <itemName>GDP at market prices</itemName>
+   </item>
+   <item>
+      <key>gdpFc</key>
+      <itemName>GDP at factor cost</itemName>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Household consumption</itemName>
+   </item>
+   <item>
+      <key>govExp</key>
+      <itemName>Government consumption</itemName>
+   </item>
+   <item>
+      <key>yinv</key>
+      <itemName>Investments</itemName>
+   </item>
+   <item>
+      <key>tDelst</key>
+      <itemName>Stock changes</itemName>
+   </item>
+   <item>
+      <key>exp</key>
+      <itemName>Total exports</itemName>
+   </item>
+   <item>
+      <key>imp</key>
+      <itemName>Total imports</itemName>
+   </item>
+   <item>
+      <key>bot</key>
+      <itemName>B.O.T.</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Economy wide total, per capita</name>
+   <clone>Economy wide totals</clone>
+   <dim5Sel>V</dim5Sel>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+   <evalAll>VAL/VAL[*,tot,pop,*,*,V]*1000</evalAll>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Household indicators</name>
+   <activitySel>h</activitySel>
+   <activityText>Households</activityText>
+   <dim5Sel>V</dim5Sel>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>Pop</key>
+      <itemName>Population size</itemName>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Consumption, nominal</itemName>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Consumption, nominal, per capita</itemName>
+      <eval>VAL/VAL[*,*,pop,*,*,V]*1000</eval>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>CPI</itemName>
+      <eval>VAL[*,*,*,*,*,P]</eval>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Consumption, real (by CPI)</itemName>
+      <eval>VAL/VAL[*,*,*,*,*,P]</eval>
+   </item>
+   <item>
+      <key>yf</key>
+      <itemName>Consumption, real (by CPI), per capita</itemName>
+      <eval>VAL/(VAL[*,*,*,*,*,P]*VAL[*,*,pop,*,*,V])*1000</eval>
+   </item>
+   <item>
+      <key>mmuh</key>
+      <itemName>Money metric</itemName>
+   </item>
+   <item>
+      <key>mmuh</key>
+      <itemName>Money metric, per capita</itemName>
+      <eval>VAL/VAL[*,tot,pop,*,*,V]*1000</eval>
+   </item>
+   <item>
+      <key>uh</key>
+      <itemName>Utility</itemName>
+   </item>
+   <item>
+      <key>Gini</key>
+      <itemName>Gini coefficiEnt</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Government account</name>
+   <activitySel>(?i)GovAcc_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>VQP</dim5Sel>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>Consum</key>
+      <itemName>Consumption</itemName>
+   </item>
+   <item>
+      <key>Invest</key>
+      <itemName>Investments, productive</itemName>
+   </item>
+   <item>
+      <key>adpInv</key>
+      <itemName>Investments, adaptive</itemName>
+   </item>
+   <item>
+      <key>transS</key>
+      <itemName>Transfers</itemName>
+   </item>
+   <item>
+      <key>Saving</key>
+      <itemName>Savings</itemName>
+   </item>
+   <item>
+      <key>debPay</key>
+      <itemName>Debt payments</itemName>
+   </item>
+   <item>
+      <key>intPay</key>
+      <itemName>of which interest</itemName>
+   </item>
+   <item>
+      <key>princPay</key>
+      <itemName>of which principal</itemName>
+   </item>
+   <item>
+      <key>transS</key>
+      <itemName>Total expenditures</itemName>
+      <eval>VAL[*,govAcc,consum,*,*,V]+VAL[*,govAcc,Invest,*,*,V]+VAL[*,govAcc,adpInv,*,*,V]
+           +VAL[*,govAcc,transS,*,*,V]+VAL[*,govAcc,Saving,*,*,V]+VAL[*,govAcc,debpay,*,*,V]</eval>
+   </item>
+   <item>
+      <key>taxRev</key>
+      <itemName>Tax income</itemName>
+   </item>
+   <item>
+      <key>facRev</key>
+      <itemName>Factor income</itemName>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Non-Tax contributions</itemName>
+   </item>
+   <item>
+      <key>Borrow</key>
+      <itemName>New debt</itemName>
+   </item>
+   <item>
+      <key>PrimaryBal</key>
+      <itemName>Primary balance</itemName>
+   </item>
+   <item>
+      <key>FiscalBal</key>
+      <itemName>Fiscal balance</itemName>
+   </item>
+   <item>
+      <key>govBal</key>
+      <itemName>Government balance</itemName>
+   </item>
+   <item>
+      <key>Borrow</key>
+      <itemName>Additional debt</itemName>
+      <eval>-VAL[*,govAcc,FiscalBal,*,*,V]</eval>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Government account, per capita</name>
+   <clone>Government account</clone>
+   <dim5Sel>V</dim5Sel>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+   <evalAll>%VAL%/VAL[*,tot,pop,*,*,V]*1000</evalAll>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Government account, line chart, scenarios</name>
+   <clone>Government account</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Enterprise account</name>
+   <activitySel>(?i)EntAcc_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>Entry</key>
+      <itemName>Enterprise income</itemName>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfers received</itemName>
+   </item>
+   <item>
+      <key>facty</key>
+      <itemName>Factor income</itemName>
+   </item>
+   <item>
+      <key>debtPay</key>
+      <itemName>Interest on loans received</itemName>
+   </item>
+   <item>
+      <key>borrow</key>
+      <itemName>New loans</itemName>
+   </item>
+   <item>
+      <key>save</key>
+      <itemName>Enterprise savings</itemName>
+   </item>
+   <item>
+      <key>transS</key>
+      <itemName>Transfer expenditures</itemName>
+   </item>
+   <item>
+      <key>tax</key>
+      <itemName>Cooperate tax</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Enterprise account, per capita</name>
+   <clone>Enterprise account</clone>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+   <evalAll>VAL/VAL[*,tot,pop,*,*,V]*1000</evalAll>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Enterprise account, line chart, scenarios</name>
+   <clone>Enterprise account</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Household accounts</name>
+   <activitySel>h</activitySel>
+   <activityText>households</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>income</key>
+      <itemName>Household income</itemName>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfers received</itemName>
+   </item>
+   <item>
+      <key>facty</key>
+      <itemName>Factor income</itemName>
+   </item>
+   <item>
+      <key>debtPay</key>
+      <itemName>Interest on loans</itemName>
+   </item>
+   <item>
+      <key>savh</key>
+      <itemName>Savings</itemName>
+   </item>
+   <item>
+      <key>consum</key>
+      <itemName>Consumption</itemName>
+   </item>
+   <item>
+      <key>transS</key>
+      <itemName>Transfer expenditures</itemName>
+   </item>
+   <item>
+      <key>tax</key>
+      <itemName>Personal income tax</itemName>
+   </item>
+   <item>
+      <key>New loans</key>
+      <itemName>Borrow</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Row account</name>
+   <activitySel>(?i)RowAcc_REGEX</activitySel>
+   <activityText>Rest of the World</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <item>
+      <key>bot</key>
+      <itemName>-B.o.T.</itemName>
+   </item>
+   <item>
+      <key>debtPay</key>
+      <itemName>Interest and principal on R.o.W. loans</itemName>
+   </item>
+   <item>
+      <key>transY</key>
+      <itemName>Transfers to R.o.W.</itemName>
+   </item>
+   <item>
+      <key>facty</key>
+      <itemName>Factor income by R.o.W.</itemName>
+   </item>
+   <item>
+      <key>savf</key>
+      <itemName>R.o.W. contributions to investments</itemName>
+   </item>
+   <item>
+      <key>transS</key>
+      <itemName>Transfer fom R.o.W.</itemName>
+   </item>
+   <item>
+      <key>borrow</key>
+      <itemName>New loans by R.o.W.</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Household accounts, per capita</name>
+   <clone>Household accounts</clone>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+   <evalAll>VAL/VAL[*,*,pop,*,*,V]*1000</evalAll>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Household accounts, line chart, scenarios</name>
+   <clone>Household accounts</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Tax income</name>
+   <activitySel>(?i)GovAcc_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V</dim5Sel>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <item>
+      <key>TaxRev</key>
+      <itemName>Tax income</itemName>
+   </item>
+      <item><key>emixp</key><itemName>Emisison taxes on production</itemName></item>
+      <item><key>FacLand</key><itemName>Land Factor Tax</itemName></item>
+      <item><key>FacLab</key><itemName>Labor Factor Tax</itemName></item>
+      <item><key>FacCap</key><itemName>Capital Factor Tax</itemName></item>
+      <item><key>psb</key><itemName>Production Subsidies</itemName></item>
+      <item><key>Prd</key><itemName>Production Taxes</itemName></item>
+      <item><key>Phn</key><itemName>Phantom Tax to calibrate activity shares</itemName></item>
+      <item><key>Exp</key><itemName>Export Taxes</itemName></item>
+      <item><key>Imp</key><itemName>Import Taxes</itemName></item>
+      <item><key>Emi</key><itemName>Emission Taxes on commodity use</itemName></item>
+      <item><key>Pit</key><itemName>Personal income tax</itemName></item>
+      <item><key>Cit</key><itemName>Corporate income tax</itemName></item>
+      <item><key>VatDom</key><itemName>VAT on domestic goods</itemName></item>
+      <item><key>VatImp</key><itemName>VAT on imported goods</itemName></item>
+      <item><key>Paf</key><itemName>Agent specific sales tax</itemName></item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Tax income, per capita</name>
+   <clone>Tax income</clone>
+   <!-- region,activity,product,year,scen,d5,d6 -->
+    <evalAll>VAL/VAL[*,tot,pop,*,*,V]*1000</evalAll>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Tax income, line chart, scenarios</name>
+   <clone>Tax income</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Capital stock and depreciation</name>
+   <activitySel>tot</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>Product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+
+   <item>
+      <key>kStock</key>
+      <itemName>Capital stock</itemName>
+   </item>
+   <item>
+      <key>depr</key>
+      <itemName>Depreciation</itemName>
+   </item>
+   <item>
+      <key>deprRate</key>
+      <itemName>Depreciation rate</itemName>
+   </item>
+   <item>
+      <key>trEntAvg</key>
+      <itemName>Return to capital rate</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Capital stock and depreciation, line chart, scenarios</name>
+   <clone>Capital stock and depreciation</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <compareMode>VALUE</compareMode>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Savings</name>
+   <activitySel>tot</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>Product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+
+   <item>
+      <key>sav</key>
+      <itemName>Total savings</itemName>
+   </item>
+   <item>
+      <key>savh</key>
+      <itemName>Household savings</itemName>
+   </item>
+   <item>
+      <key>savg</key>
+      <itemName>Government savings</itemName>
+      <longtext>Model variable: savg</longtext>
+   </item>
+   <item>
+      <key>save</key>
+      <itemName>Enterprise savings</itemName>
+   </item>
+   <item>
+      <key>savf</key>
+      <itemName>Foreign savings</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Savings, comparison across scenario</name>
+   <clone>Savings</clone>
+   <defpivot>rows=scenarios;columns=years;columnGroup=items;</defpivot>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <compareDim>Scenarios</compareDim>
+   <defView>Line chart</defView>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Debt</name>
+   <activitySel>tot</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>Product</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+
+   <item>
+      <key>debtStkD</key>
+      <itemName>Domestic debt stock</itemName>
+   </item>
+   <item>
+      <key>DebtStkF</key>
+      <itemName>Foreign debt stock</itemName>
+   </item>
+   <item>
+      <key>DebtStkT</key>
+      <itemName>Total debt stock</itemName>
+   </item>
+   <item>
+      <key>debtGDP</key>
+      <itemName>Debt over GDP</itemName>
+   </item>
+   <item>
+      <key>debtPay</key>
+      <itemName>Payments to lenders</itemName>
+   </item>
+   <item>
+      <key>debtNewT</key>
+      <itemName>New debt</itemName>
+   </item>
+   <item>
+      <key>fundPricP</key>
+      <itemName>Average returns to savings (1=benchmark)</itemName>
+   </item>
+   <item>
+      <key>Rorc</key>
+      <itemName>Returns to investments</itemName>
+      <longtext>Returns to capital, normalized with price index of investments, minus depreciation rate</longtext>
+      <unit>%</unit>
+   </item>
+   <item>
+      <key>debtIntF</key>
+      <itemName>Interest rate on foreign debt (%)</itemName>
+   </item>
+   <item>
+      <key>debtIntD</key>
+      <itemName>Interest rate on domestic debt (%)</itemName>
+   </item>
+   <item>
+      <key>rdebtStkD</key>
+      <itemName>Repayment rate on domestic debt (%)</itemName>
+   </item>
+   <item>
+      <key>rdebtStkF</key>
+      <itemName>Repayment rate on foreign debt (%)</itemName>
+   </item>
+</table>
+<table>
+   <theme>National accounts</theme>
+   <name>Debt, line chart, scenario comparison</name>
+   <clone>Debt</clone>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+   <defView>Line chart</defView>
+</table>
+
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, cost</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>prod,sumTx,fp,ftx,ptx,psb,tot</productSel>
+   <productText>Cost and taxes</productText>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, GDP contribution</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>gdp-cont_REGEX</productSel>
+   <productText>Cost and taxes</productText>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <itemDim>None</itemDim>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Activities</compareDim>
+   <compareItem>All sectors</compareItem>
+
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, VA shares</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>va-agg_REGEX</productSel>
+   <productText>Cost and taxes</productText>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Activities</compareDim>
+   <compareItem>All sectors</compareItem>
+
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, depreciation</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>depr_regex</productSel>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>Dim5</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=years;</defpivot>
+   <item>
+         <key>Q</key>
+         <itemName>Depreciated capital</itemName>
+   </item>
+   <item>
+         <key>V</key>
+         <itemName>Value of depreciation</itemName>
+   </item>
+
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, output per unit of land</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>yieldLnd_REGEX</productSel>
+   <productText>hide</productText>
+   <activitySel>act</activitySel>
+   <dim5Sel>Q</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, cost, deflated</name>
+   <clone>Sectors, cost</clone>
+   <itemDim>Dim5</itemDim>
+   <item>
+         <key>P</key>
+         <itemName>GDP price index</itemName>
+         <eval>VAL[*,tot,gdpMP,*,*,P]</eval>
+   </item>
+   <item>
+         <key>P</key>
+         <itemName>Real wages</itemName>
+         <eval>VAL/VAL[*,tot,gdpMP,*,*,P]</eval>
+   </item>
+   <item>
+         <key>P</key>
+         <itemName>Nominal wages</itemName>
+   </item>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <name>Sectors, cost, by sector aggregate</name>
+   <productSel>prod,sumTx,fp,ftx,ptx,psb,tot</productSel>
+   <productText>Cost and taxes</productText>
+   <activitySel>aagr</activitySel>
+   <activityText>Activity aggregate</activityText>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sector aggregates: output,va, line chart, scenario comparison</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productText>hide</productText>
+   <activitySel>aagr</activitySel>
+   <activityText>Activity aggregate</activityText>
+   <dim5Sel>VQP</dim5Sel>
+   <itemDim>product</itemDim>
+   <defpivot>rows=scenarios;columns=years;columnGroup=activity;</defpivot>
+   <defView>Line chart</defView>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+   <item>
+       <key>tot</key>
+       <itemName>Production</itemName>
+   </item>
+   <item>
+       <key>va</key>
+       <itemName>Value added</itemName>
+   </item>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sector aggregates: output,va, line chart, scenario comparison</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productText>hide</productText>
+   <activitySel>aagr</activitySel>
+   <activityText>Activity aggregate</activityText>
+   <dim5Sel>VQP</dim5Sel>
+   <itemDim>product</itemDim>
+   <defpivot>rows=scenarios;columns=years;columnGroup=activity;</defpivot>
+   <defView>Line chart</defView>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+   <item>
+       <key>tot</key>
+       <itemName>Production</itemName>
+   </item>
+   <item>
+       <key>va</key>
+       <itemName>Value added</itemName>
+   </item>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sector aggregates: output,va, bar chart, one year</name>
+   <clone>Sector aggregates: output,va, line chart, scenario comparison</clone>
+   <defpivot>rows=scenarios;columns=product;columnGroup=activity;</defpivot>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <hideEmptyRows>false</hideEmptyRows>
+   <compareDim>Scenarios</compareDim>
+   <defView>Bar chart</defView>
+   <barChartmaxSeries>10</barChartmaxSeries>
+   <showAxisTitles>false</showAxisTitles>
+   <FontSizeRelative>90</FontSizeRelative>
+   <barChart3D>false</barChart3D>
+   <blueishColors>true</blueishColors>
+   <barChartDrawOutline>true</barChartDrawOutline>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sector aggregates: factor use, line chart, scenario comparison</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productText>Factors</productText>
+   <productSel>fp</productSel>
+   <activitySel>aagr</activitySel>
+   <activityText>Activity aggregate</activityText>
+   <dim5Sel>VQP</dim5Sel>
+   <itemDim>none</itemDim>
+   <!-- <hideEmptyRows>true</hideEmptyRows> -->
+   <defpivot>rows=scenarios;columns=years;columnGroup=activity;</defpivot>
+   <defView>Line chart</defView>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sector aggregates: factor use, bar chart, one year</name>
+   <clone>Sector aggregates: factor use, line chart, scenario comparison</clone>
+   <defpivot>rows=scenarios;columns=product;columnGroup=activity;</defpivot>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <compareDim>Scenarios</compareDim>
+   <defView>Bar chart</defView>
+   <drop>Net exports</drop>
+   <barChartmaxSeries>10</barChartmaxSeries>
+   <showAxisTitles>false</showAxisTitles>
+   <FontSizeRelative>90</FontSizeRelative>
+   <barChart3D>false</barChart3D>
+   <barChartDrawOutline>true</barChartDrawOutline>
+   <blueishColors>true</blueishColors>
+   <barChartmaxPlots>10</barChartmaxPlots>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Broad sector aggregates: output,va, line chart, scenario comparison</name>
+   <clone>Sector aggregates: output,va, line chart, scenario comparison</clone>
+   <activitySel>actAgg</activitySel>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Broad sector aggregate: output,va, bar chart, one year</name>
+   <clone>Sector aggregates: output,va, bar chart, one year</clone>
+   <activitySel>actAgg</activitySel>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Broad sector aggregates: factor use, line chart, scenario comparison</name>
+   <clone>Sector aggregates: factor use, line chart, scenario comparison</clone>
+   <activitySel>actAgg</activitySel>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Broad sector aggregates: factor use, bar chart, one year</name>
+   <clone>Sector aggregates: factor use, bar chart, one year</clone>
+   <activitySel>actAgg</activitySel>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, cost, time series</name>
+   <clone>Sectors, cost</clone>
+   <defpivot>rows=products;columnGroups=scenario;columns=Years;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, cost shares</name>
+   <clone>Sectors, cost</clone>
+   <itemDim>Dim5</itemDim>
+   <item>
+      <key>V</key>
+      <eval>VAL/VAL[*,*,tot,*,*,V]</eval>
+   </item>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, cost shares, time series</name>
+   <clone>Sectors, cost shares</clone>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, tech nests</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>fppar</productSel>
+   <productText>Tech nests</productText>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <dim5Sel>V,Q,P,S</dim5Sel>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, tech nests as cost shares</name>
+   <clone>Sectors, tech nests</clone>
+   <itemDim>Dim5</itemDim>
+   <item>
+      <key>V</key>
+      <eval>VAL/VAL[*,*,tot,*,*,V]</eval>
+   </item>
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, make matrix</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>act</productSel>
+   <productText>Activities</productText>
+   <activitySel>prod</activitySel>
+   <activityText>Products</activityText>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+
+</table>
+<table>
+   <theme>Sectors</theme>
+   <name>Sectors, endoTech</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>Product</itemDim>
+   <dim5Sel>Q</dim5Sel>
+   <defview>Table</defview>
+   <defpivot>rows=product;columnGroups=scenario;</defpivot>
+   <item>
+         <key>inn</key>
+         <itemName>Number of new innovations</itemName>
+   </item>
+   <item>
+         <key>obsol</key>
+         <itemName>Number of obsolete innovations</itemName>
+   </item>
+   <item>
+         <key>xrd</key>
+         <itemName>R and D effort</itemName>
+   </item>
+   <item>
+         <key>nVar</key>
+         <itemName># of varieties</itemName>
+   </item>
+   <item>
+         <key>tpRd</key>
+         <itemName>R and D triggered t.p.</itemName>
+   </item>
+   <item>
+         <key>xp</key>
+         <itemName>Xp relation</itemName>
+   </item>
+   <item>
+         <key>xp0</key>
+         <itemName>Xp relation0</itemName>
+   </item>
+   <item>
+         <key>xfac</key>
+         <itemName>xFac relation</itemName>
+   </item>
+   <item>
+         <key>xfac0</key>
+         <itemName>xFac relation0</itemName>
+   </item>
+
+</table>
+
+<table>
+   <clone>Household accounts</clone>
+   <theme>Household</theme>
+   <name>Household account</name>
+</table>
+<table>
+   <clone>Household accounts, per capita</clone>
+   <theme>Household</theme>
+   <name>Household account, per capita</name>
+</table>
+<table>
+   <clone>Household accounts</clone>
+   <theme>Household</theme>
+   <name>Household account, normalized, line chart</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+</table>
+<table>
+   <clone>Household accounts</clone>
+   <theme>Household</theme>
+   <name>Household account, line chart, scenario comparison</name>
+   <defpivot>rows=sceanarios;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household expenditures</name>
+   <productSel>prod,inv,dtx,row,tot</productSel>
+   <productText>Expenditures</productText>
+   <activitySel>h</activitySel>
+   <activityText>Households</activityText>
+   <itemDim>None</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household consumption</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>prod</productSel>
+   <productText>Products and taxes</productText>
+   <activitySel>h</activitySel>
+   <activityText>Households</activityText>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household nutrients</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>nutr</productSel>
+   <productText>nutrients</productText>
+   <activitySel>h</activitySel>
+   <activityText>Households</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>None</itemDim>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Household</theme>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <name>Household consumption of k-bundles</name>
+   <productSel>k</productSel>
+   <productText>Product bundles</productText>
+   <activitySel>h</activitySel>
+   <activityText>Households</activityText>
+   <itemDim>None</itemDim>
+   <dim5Sel>VQP</dim5Sel>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household consumption, per capita</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <clone>Household consumption</clone>
+   <itemDim>Dim5</itemDim>
+   <item>
+       <key>V</key>
+       <!-- region,activity,product,year,scen,d5,d6 -->
+       <eval>VAL/VAL[*,*,pop,*,*,V]*1000</eval>
+   </item>
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household budget shares</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>prod</productSel>
+   <productText>Products</productText>
+   <activitySel>h</activitySel>
+   <activityText>Activities</activityText>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+   <itemDim>Dim5</itemDim>
+   <item>
+       <key>V</key>
+       <unit>%</unit>
+       <!-- region,activity,product,year,scen,d5,d6 -->
+       <eval>VAL/VAL[*,*,c-sum,*,*,V]*100</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household expenditures, time series</name>
+   <clone>Household expenditures</clone>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household income</name>
+   <productSel>h</productSel>
+   <productText>Households</productText>
+   <activitySel>^(f-|e-|g-|w-|tot).*_REGEX</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+
+</table>
+<table>
+   <theme>Household</theme>
+   <name>Household income, time series</name>
+   <clone>Household income</clone>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <clone>Government account</clone>
+   <theme>Government</theme>
+   <name>Government account</name>
+</table>
+<table>
+   <clone>Government account</clone>
+   <theme>Government</theme>
+   <name>Government account, normalized, line chart</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+</table>
+<table>
+   <clone>Government account</clone>
+   <theme>Government</theme>
+   <name>Government account, line chart, scenario comparison</name>
+   <defpivot>rows=sceanarios;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+</table>
+<table>
+   <theme>Government</theme>
+   <name>Government consumption</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>prod</productSel>
+   <productText>Products</productText>
+   <activitySel>gov</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Government</theme>
+   <name>Government income</name>
+   <productSel>gov</productSel>
+   <productText>hide</productText>
+   <activitySel>^(t-|e-|i-|w-|tot).*_REGEX</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=years;</defpivot>
+
+</table>
+<table>
+   <clone>Tax income</clone>
+   <theme>Taxes</theme>
+   <name>Taxes, overview</name>
+</table>
+<table>
+   <clone>Tax income</clone>
+   <theme>Taxes</theme>
+   <name>Taxes, overview, line chart</name>
+   <defview>Line chart</defview>
+   <defpivot>rows=scenarios;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Taxes</theme>
+   <name>Product related taxes</name>
+   <productSel>stx,mtx,etx,ctx</productSel>
+   <productText>Tax type</productText>
+   <activitySel>prod</activitySel>
+   <activityText>Product</activityText>
+   <itemDim>None</itemDim>
+   <defview>Table</defview>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+</table>
+<table>
+   <theme>Taxes</theme>
+   <name>Factor related taxes</name>
+   <productSel>ftx</productSel>
+   <productText>Tax types</productText>
+   <activitySel>act</activitySel>
+   <activityText>Sectors</activityText>
+   <itemDim>None</itemDim>
+   <dim5Sel>G,T,V</dim5Sel>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=product;</defpivot>
+
+</table>
+<table>
+   <theme>Taxes</theme>
+   <name>Production related taxes and subsidies</name>
+   <productSel>ptx,psb,phn</productSel>
+   <productText>Tax type</productText>
+   <activitySel>act</activitySel>
+   <activityText>Activities</activityText>
+   <itemDim>None</itemDim>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=dim5;</defpivot>
+
+</table>
+
+<table>
+   <theme>Factor markets</theme>
+   <name>Economy wide factor markets</name>
+   <activitySel>tot</activitySel>
+   <activityText>hide</activityText>
+   <productSel>fp</productSel>
+   <productText>Factor</productText>
+   <itemDim>none</itemDim>
+   <defview>Table</defview>
+   <dim5Sel>VQP</dim5Sel>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Factor markets</theme>
+   <clone>Economy wide factor markets</clone>
+   <name>Economy wide factor markets, normalized, line chart</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+</table>
+<table>
+   <theme>Factor markets</theme>
+   <clone>Economy wide factor markets</clone>
+   <name>Economy wide factor markets, line chart, scenario comparison</name>
+   <defpivot>rows=scenarios;columns=years;columnGroup=dim5;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>true</showAxisTitles>
+   <autoRangeIncludesZero>false</autoRangeIncludesZero>
+</table>
+<table>
+   <theme>Markets</theme>
+   <name>Output, Domestic sales, Imports, Exports</name>
+   <productSel>prod</productSel>
+   <productText>Products</productText>
+   <itemDim>activity</itemDim>
+   <defview>Table</defview>
+   <dim5Sel>VQPTG</dim5Sel>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defpivot>rows=products;columnGroups=scenario;columns=activities;</defpivot>
+   <item>
+       <key>Output</key>
+       <itemName>Domestic output</itemName>
+       <longText>Domestic sales and exports</longText>
+   </item>
+   <item>
+       <key>exp</key>
+       <itemName>Exports</itemName>
+   </item>
+   <item>
+       <key>dms</key>
+       <itemName>Domestic sales</itemName>
+   </item>
+   <item>
+       <key>imp</key>
+       <itemName>Imports</itemName>
+   </item>
+   <item>
+       <key>mrkApp</key>
+       <itemName>Market appearances</itemName>
+       <longText>Domestic sales and imports</longText>
+   </item>
+</table>
+<table>
+   <theme>Markets</theme>
+   <name>GDP by product</name>
+   <productSel>prod</productSel>
+   <productText>Products</productText>
+   <itemDim>activity</itemDim>
+   <defview>Table</defview>
+   <dim5Sel>VQP</dim5Sel>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <item>
+       <key>gdpmp</key>
+       <itemName>GDP</itemName>
+   </item>
+</table>
+<table>
+   <theme>Markets</theme>
+   <name>Armington decomposition, margin inclusive, VAT tax</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>prod</productSel>
+   <productText>Products</productText>
+   <itemDim>activity</itemDim>
+   <dim5Sel>VQPTG</dim5Sel>
+   <defview>Table</defview>
+   <defpivot>rows=products;columnGroups=scenario;columns=activity,dim5;</defpivot>
+   <item>
+       <key>impM</key>
+       <itemName>Imports</itemName>
+   </item>
+   <item>
+       <key>domM</key>
+       <itemName>Domestic origin</itemName>
+   </item>
+   <item>
+       <key>arm</key>
+       <itemName>Sum</itemName>
+   </item>
+</table>
+<table>
+   <theme>Markets</theme>
+   <name>Domestic and import demand, margin exclusive and margins</name>
+   <productSel>prod</productSel>
+   <productText>Products</productText>
+   <itemDim>activity</itemDim>
+   <defview>Table</defview>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <dim5Sel>VQPTG</dim5Sel>
+   <defpivot>rows=products;columnGroups=scenario;columns=activity,dim5;</defpivot>
+   <item>
+       <key>imp</key>
+       <itemName>Imports</itemName>
+   </item>
+   <item>
+       <key>impMrg</key>
+       <itemName>Import margin</itemName>
+   </item>
+   <item>
+       <key>domM</key>
+       <itemName>Domestic origin</itemName>
+   </item>
+   <item>
+       <key>domMrg</key>
+       <itemName>Domestic margin</itemName>
+   </item>
+</table>
+<table>
+   <theme>Markets</theme>
+   <name>Demand at Agent prices</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>prod</productSel>
+   <productText>Product</productText>
+   <activitySel>htot,fd,stb,actSum</activitySel>
+   <activityText>Final demand</activityText>
+   <itemDim>none</itemDim>
+   <dim5Sel>VQPTG</dim5Sel>
+   <defview>Table</defview>
+   <defpivot>rows=activities;columnGroups=scenario;columns=products;</defpivot>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <name>Air emissions</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <activitySel>tot,aa</activitySel>
+   <activityText>Emittors</activityText>
+   <productSel>emsrc,fp</productSel>
+   <productText>Emission sources</productText>
+   <dim5Sel>em</dim5Sel>
+   <dim5Text>Emission</dim5Text>
+   <itemDim>none</itemDim>
+   <hideEmptyRows>YES</hideEmptyRows>
+   <hideEmptyCols>YES</hideEmptyCols>
+   <defpivot>rows=activities;columnGroups=scenario;columns=products;</defpivot>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <name>Land use and carbon stock changes</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>lCov,tot</productSel>
+   <productText>Land cover</productText>
+   <itemDim>activity</itemDim>
+   <dim5Sel>Q</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <defpivot>columns=Years;columnGroups=scenario;rows=products;</defpivot>
+   <item>
+       <key>ha</key>
+       <itemName>Area</itemName>
+       <unit>Mio ha</unit>
+   </item>
+   <item>
+       <key>dc</key>
+       <itemName>Carbon stock change</itemName>
+       <unit>Mio t Carbon</unit>
+   </item>
+   <item>
+       <key>c</key>
+       <itemName>Carbon stock</itemName>
+       <unit>Mio t Carbon</unit>
+   </item>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <clone>Land use and carbon stock changes</clone>
+   <name>Land use and carbon stock changes, map</name>
+   <regionSel>raez</regionSel>
+   <defview>map</defview>
+   <coo>aez.zip</coo>
+   <defpivot>columns=scenarios;rows=regions;</defpivot>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <name>Emissions by agents</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <activitySel>aa</activitySel>
+   <activityText>agents</activityText>
+   <productSel>act_regex</productSel>
+   <productText>hide</productText>
+   <dim5Sel>em</dim5Sel>
+   <dim5Text>Emissions</dim5Text>
+   <itemDim>none</itemDim>
+   <hideEmptyCols>YES</hideEmptyCols>
+   <defpivot>rows=activities;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <name>Emissions by inventory</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <activitySel>tot</activitySel>
+   <activityText>hide</activityText>
+   <productSel>ghgInvUsr</productSel>
+   <productText>InvEntory Category</productText>
+   <dim5Sel>em</dim5Sel>
+   <dim5Text>Emissions</dim5Text>
+   <itemDim>none</itemDim>
+   <hideEmptyCols>YES</hideEmptyCols>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <name>Emissions overview</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <productSel>pollType</productSel>
+   <productText>Emission sources</productText>
+   <activityText>Indicator</activityText>
+   <dim5Sel>Q</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>activity</itemDim>
+   <hideEmptyRows>YES</hideEmptyRows>
+   <hideEmptyCols>YES</hideEmptyCols>
+   <defpivot>rows=products;columnGroups=scenario;columns=years;</defpivot>
+   <item>
+       <key>tot</key>
+       <itemName>Emissions</itemName>
+       <unit>Mio t</unit>
+   </item>
+   <item>
+       <key>int</key>
+       <itemName>Intensity per GDP</itemName>
+       <eval>VAL*1000</eval>
+       <unit>t per Mio USD</unit>
+   </item>
+   <item>
+       <key>tax</key>
+       <itemName>Carbon tax</itemName>
+       <unit>USD per ton</unit>
+       <eval>VAL/VAL[*,tot,usd,*,*,V]</eval>
+   </item>
+   <item>
+       <key>tot</key>
+       <itemName>Per capita</itemName>
+       <eval>VAL/VAL[*,tot,pop,*,*,V]*1000</eval>
+   </item>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <clone>Emissions overview</clone>
+   <name>Emissions overview, line chart, normalized</name>
+   <defpivot>rows=products;columns=years;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>false</showAxisTitles>
+
+   <compareMode>NORMALISE</compareMode>
+   <compareDim>Years</compareDim>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <clone>Emissions overview</clone>
+   <name>Emissions overview, line chart, scenario comparison</name>
+   <defpivot>rows=scenarios;columns=years;columnGroup=product;</defpivot>
+   <defView>Line chart</defView>
+   <showAxisTitles>true</showAxisTitles>
+   <compareMode>VALUE</compareMode>
+</table>
+<table>
+   <theme>Emissions</theme>
+   <clone>Emissions overview</clone>
+   <name>Emissions overview, bar chart, scenario comparison, one year</name>
+   <defpivot>rows=items;columns=activity;columnGroup=scenarios;</defpivot>
+   <defView>Bar chart</defView>
+   <showAxisTitles>true</showAxisTitles>
+   <compareMode>ONLY_PERCENT</compareMode>
+   <compareDim>Scenarios</compareDim>
+</table>
+<table>
+   <theme>Model</theme>
+   <name>Solve diagnostics</name>
+   <weights>VAL[*,tot,prob,*,*,V]</weights>
+   <activitySel>mod_REGEX</activitySel>
+   <activityText>hide</activityText>
+   <dim5Sel>V_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <itemDim>product</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=scenarios;columnGroups=product;columns=dim5;</defpivot>
+   <item>
+       <key>nSolves</key>
+       <itemName>Repeated Solves</itemName>
+   </item>
+   <item>
+       <key>Resusd</key>
+       <itemName>Seconds used</itemName>
+   </item>
+   <item>
+       <key>Iterusd</key>
+       <itemName>Iteration used</itemName>
+   </item>
+   <item>
+       <key>ModStatus</key>
+       <itemName>Model status</itemName>
+   </item>
+   <item>
+       <key>SolStatus</key>
+       <itemName>Solve status</itemName>
+   </item>
+   <item>
+       <key>Walras % of GDP</key>
+       <itemName>Walras check as % of GDP</itemName>
+   </item>
+   <item>
+       <key>numInfes</key>
+       <itemName>Infeasibility count</itemName>
+   </item>
+   <item>
+       <key>sumInfes</key>
+       <itemName>Infeasibility sum</itemName>
+   </item>
+   <item>
+       <key>numequ</key>
+       <itemName>Equation count</itemName>
+   </item>
+   <item>
+       <key>numredef</key>
+       <itemName>Redefinition count</itemName>
+   </item>
+
+</table>
+<table>
+   <theme>Build</theme>
+   <name>Column and row sums</name>
+   <dim5Sel>Sums_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <productSel>FromDataCube</productSel>
+   <activitySel>rowSum|colSum_regex</activitySel>
+   <regionSel>target|ce_regex</regionSel>
+   <itemDim>region</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=product;columnsGroup=region;columns=activity</defpivot>
+   <hideEmptyRows>yes</hideEmptyRows>
+
+   <item>
+       <itemName>target</itemName>
+       <key>target</key>
+   </item>
+   <item>
+       <itemName>solution</itemName>
+       <key>ce</key>
+   </item>
+   <item>
+       <itemName>% diff</itemName>
+       <key>target</key>
+       <eval>(VAL[ce]-VAL[target])/VAL[target]*100</eval>
+   </item>
+   <item>
+       <itemName>Abs diff</itemName>
+       <key>fixes</key>
+       <eval>abs(VAL[ce]-VAL[target])</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Build</theme>
+   <name>SAM, before split</name>
+   <dim5Sel>sam_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <productSel>FromDataCube</productSel>
+   <activitySel>FromDataCube</activitySel>
+   <regionSel>target|ce_regex</regionSel>
+   <itemDim>region</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=product,activity;columns=region;</defpivot>
+   <hideEmptyRows>yes</hideEmptyRows>
+
+   <item>
+       <itemName>target</itemName>
+       <key>target</key>
+   </item>
+   <item>
+       <itemName>fixes</itemName>
+       <key>fixes</key>
+   </item>
+   <item>
+       <itemName>solution</itemName>
+       <key>ce</key>
+   </item>
+   <item>
+       <itemName>% diff</itemName>
+       <key>target</key>
+       <eval>(VAL[ce]-VAL[target])/VAL[target]*100</eval>
+   </item>
+   <item>
+       <itemName>Abs diff</itemName>
+       <key>fixes</key>
+       <eval>abs(VAL[ce]-VAL[target])</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Build</theme>
+   <name>SAM, split</name>
+   <dim5Sel>sam_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <productSel>FromDataCube</productSel>
+   <activitySel>FromDataCube</activitySel>
+   <regionSel>dis|fin_regex</regionSel>
+   <itemDim>region</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=product,activity;columns=region;</defpivot>
+   <hideEmptyRows>yes</hideEmptyRows>
+
+   <item>
+       <itemName>target</itemName>
+       <key>dis</key>
+   </item>
+   <item>
+       <itemName>solution</itemName>
+       <key>fin</key>
+   </item>
+   <item>
+       <itemName>% diff</itemName>
+       <key>dis</key>
+       <eval>(VAL[fin]-VAL[dis])/VAL[dis]*100</eval>
+   </item>
+   <item>
+       <itemName>Abs diff</itemName>
+       <key>dis</key>
+       <eval>abs(VAL[fin]-VAL[dis])</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Build</theme>
+   <name>SAM, split split cells, only</name>
+   <dim5Sel>sam_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <productSel>FromDataCube</productSel>
+   <activitySel>FromDataCube</activitySel>
+   <regionSel>disOnly|finOnly_regex</regionSel>
+   <itemDim>region</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=product,activity;columns=region;</defpivot>
+   <hideEmptyRows>yes</hideEmptyRows>
+
+   <item>
+       <itemName>target</itemName>
+       <key>disOnly</key>
+   </item>
+   <item>
+       <itemName>solution</itemName>
+       <key>finOnly</key>
+   </item>
+   <item>
+       <itemName>% diff</itemName>
+       <key>dis</key>
+       <eval>(VAL[finOnly]-VAL[disOnly])/VAL[disOnly]*100</eval>
+   </item>
+   <item>
+       <itemName>Abs diff</itemName>
+       <key>dis</key>
+       <eval>abs(VAL[finOnly]-VAL[disOnly])</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Build</theme>
+   <name>Macro SAM</name>
+   <dim5Sel>macSam_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <productSel>FromDataCube</productSel>
+   <activitySel>FromDataCube</activitySel>
+   <regionSel>proto|ce_regex</regionSel>
+   <itemDim>region</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=product,activity;columns=region;</defpivot>
+   <hideEmptyRows>yes</hideEmptyRows>
+
+   <item>
+       <itemName>Proto</itemName>
+       <key>proto</key>
+   </item>
+   <item>
+       <itemName>Solution</itemName>
+       <key>ce</key>
+   </item>
+   <item>
+       <itemName>% diff</itemName>
+       <key>target</key>
+       <eval>(VAL[ce]-VAL[proto])/VAL[ce]*100</eval>
+   </item>
+   <item>
+       <itemName>Abs diff</itemName>
+       <key>fixes</key>
+       <eval>abs(VAL[proto]-VAL[ce])</eval>
+   </item>
+
+</table>
+<table>
+   <theme>Build</theme>
+   <name>SAM Statistics</name>
+   <dim5Sel>samStat_REGEX</dim5Sel>
+   <dim5Text>hide</dim5Text>
+   <activitySel>stat_regex</activitySel>
+   <productSel>FromDataCube</productSel>
+   <regionSel>target|ce_regex</regionSel>
+   <itemDim>region</itemDim>
+   <defview>Table</defview>
+   <defpivot>rows=product;columns=stats;columnsGroup=region;</defpivot>
+   <hideEmptyRows>yes</hideEmptyRows>
+
+   <item>
+       <itemName>target</itemName>
+       <key>target</key>
+   </item>
+   <item>
+       <itemName>solution</itemName>
+       <key>ce</key>
+   </item>
+
+</table>
+
+<xi:include href="generated.xml">
+<xi:fallback>
+   <xi:include href="generated_example.xml"/>
+</xi:fallback>
+</xi:include>
+</tables>
