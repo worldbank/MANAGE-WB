@@ -1,0 +1,57 @@
+GAMS 50.1.0  12b75dde Jun 18, 2025          WEX-WEI x86 64bit/MS Windows - 05/21/26 11:09:19 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  ********************************************************************************
+       
+         GTAP8 in GAMS project
+       
+         GAMS file : LHS_TO_GDX.GMS
+       
+         @purpose  : Read output from SANDIA LHS utility to store in GDX
+         @author   : Wolfgang Britz
+         @date     : 28.05.15
+         @since    :
+         @refDoc   :
+         @seeAlso  :
+         @calledBy : sensitivity.gms
+       
+  17  ********************************************************************************
+  20    $$include %lhsout%
+****                     $282
+**** 282  Unable to open include file
+****         Hint: Does the filename need to be quoted?
+  22    set draws / d1*d%nDraws%/;
+****                   $763,508
+**** 508  Blank needed between element and text
+****        (-or- illegal character in element)
+**** 763  Numeric field missing in <element> * <element> list
+  23    parameter p_doe(draws,var) "Probability for each draw and variable from LHS";
+****                            $120
+**** 120  Unknown identifier entered as set
+  24    p_doe(draws,var) = sum(obs $ (obs.pos eq draws.pos), LHSample("1",var,obs));
+****                             $120                               $140$116
+**** 116  Label is unknown
+**** 120  Unknown identifier entered as set
+**** 140  Unknown symbol
+  28  $abort Compilation error after file: lhs_to_Gdx
+****       $343
+**** 343  Abort triggered by above statement
+
+**** 8 ERROR(S)   0 WARNING(S)
+
+
+COMPILATION TIME     =        0.016 SECONDS      3 MB  50.1.0 12b75dde WEX-WEI
+
+
+USER: Development Economics                          G250715|0002CA-WIN
+      The World Bank                                             DC5364
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+Output     C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.lst
+
+**** USER ERROR(S) ENCOUNTERED

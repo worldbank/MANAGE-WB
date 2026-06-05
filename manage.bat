@@ -1,0 +1,2 @@
+cd gui
+manage.bat

@@ -1,0 +1,51 @@
+--- Job lhs_to_Gdx.gms Start 05/21/26 11:09:19 50.1.0 12b75dde WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\50\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    PageSize 0
+    ScrDir C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\225a\
+    SysDir C:\GAMS\50\
+    LogOption 3
+    AppendLog 1
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Development Economics                          G250715|0002CA-WIN
+          The World Bank                                             DC5364
+          C:\Users\wb586625\OneDrive - WBG\Documents\GAMS\gamslice.txt
+          aazeddine@worldbankgroup.org                                     
+          The maintenance period of the license expired on Feb 10, 2026
+          Please contact GAMS or your distributor for further information
+System information: 12 physical cores and 32 Gb physical memory detected
+GAMS 50.1.0   Copyright (C) 1987-2025 GAMS Development. All rights reserved
+--- Starting compilation
+--- lhs_to_Gdx.gms(20) 2 Mb 1 Error
+*** Error 282 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Unable to open include file
+       Hint: Does the filename need to be quoted?
+--- lhs_to_Gdx.gms(22) 3 Mb 3 Errors
+*** Error 763 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Numeric field missing in <element> * <element> list
+*** Error 508 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Blank needed between element and text
+      (-or- illegal character in element)
+--- lhs_to_Gdx.gms(23) 3 Mb 4 Errors
+*** Error 120 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Unknown identifier entered as set
+--- lhs_to_Gdx.gms(24) 3 Mb 7 Errors
+*** Error 120 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Unknown identifier entered as set
+*** Error 140 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Unknown symbol
+*** Error 116 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Label is unknown
+***
+*** Abort Compilation error after file: lhs_to_Gdx
+***
+*** Error 343 in C:\Users\wb586625\OS_test\MNG_WB_OS\inc\sensStoch\lhs_to_Gdx.gms
+    Abort triggered by above statement
+--- lhs_to_Gdx.gms(28) 3 Mb 8 Errors
+*** Status: Compilation error(s)
+--- Job lhs_to_Gdx.gms Stop 05/21/26 11:09:19 elapsed 0:00:00.033

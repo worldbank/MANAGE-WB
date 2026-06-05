@@ -1,0 +1,6 @@
+proximal_perturbation 0
+crash_method none
+crash_perturb no
+nms_initial_reference_factor 10
+nms_memory_size 2
+nms_mstep_frequency 1

@@ -1,0 +1,3 @@
+proximal_perturbation 0
+crash_method pnewton
+nms_initial_reference_factor 2

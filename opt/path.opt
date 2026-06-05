@@ -1,0 +1,7 @@
+proximal_perturbation 0
+crash_method pnewton
+crash_nbchange_limit 10
+nms_initial_reference_factor 2
+crash_searchtype arc
+nms_searchtype arc
+gradient_searchtype arc

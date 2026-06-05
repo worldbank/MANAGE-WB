@@ -1,0 +1,14 @@
+* -------------------------------------------------
+*   General Option file for CONOPT4
+* -------------------------------------------------
+* Maximum and minimum jacobian element
+
+Lim_Variable = 1.00e+20
+Lim_Pre_Msg  = 100
+Flg_ForDefc  =    1
+frq_log_simple =  1
+frq_log_slpsqp =  1
+tol_feas_min   = 1.E-9
+tol_feas_max   = 2.E-9
+Tol_Optimality = 5E-7
+num_rounds     = 1

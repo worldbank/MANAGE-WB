@@ -1,0 +1,4 @@
+proximal_perturbation=0
+crash_method=none
+crash_perturb=yes
+nms_initial_reference_factor=2
