@@ -5,7 +5,6 @@ MANAGE-WB is a recursive dynamic Computable General Equilibrium (CGE) model deve
 
 Getting Started
 
-GAMS License Requirements
 Users require a GAMS license to run MANAGE-WB. The model is solved by default as a CNS (Constrained Nonlinear System — a square system of nonlinear equations), which enables the use of the CONOPT4 solver.
 
 Alternative solvers:
