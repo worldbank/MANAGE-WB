@@ -11,8 +11,9 @@ Alternative solvers:
 PATH — available to PATH license holders, solves the model as MCP (Mixed Complementarity Problem)
 NLPEC — included free with any GAMS installation, can also be used for MCP
 
+
 Documentation: 
 https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099543511132534267
 
 Contact: 
-For access and inquiries: info_manage-wb@worldbank.org (to obtain)
+For access and inquiries: manage_wb@worldbank.org
