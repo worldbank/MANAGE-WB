@@ -13,7 +13,7 @@ NLPEC — included free with any GAMS installation, can also be used for MCP
 
 
 Documentation: 
-https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099543511132534267
+[https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099543511132534267](https://www.worldbank.org/en/programs/economicpolicy-macro-modeling/cge#1)
 
 Contact: 
 For access and inquiries: manage_wb@worldbank.org
