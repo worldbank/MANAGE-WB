@@ -1,3 +1,5 @@
+Over
+
 MANAGE-WB: A Recursive Dynamic CGE Model
 MANAGE-WB is a recursive dynamic Computable General Equilibrium (CGE) model developed by the World Bank. It is a single-country, open-economy framework featuring multiple sectors, institutions, and factors of production.
 
@@ -10,7 +12,6 @@ Users require a GAMS license to run MANAGE-WB. The model is solved by default as
 Alternative solvers:
 PATH — available to PATH license holders, solves the model as MCP (Mixed Complementarity Problem)
 NLPEC — included free with any GAMS installation, can also be used for MCP
-
 
 Documentation: 
 https://www.worldbank.org/en/programs/economicpolicy-macro-modeling/cge#1
