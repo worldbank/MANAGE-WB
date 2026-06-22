@@ -237,7 +237,7 @@ The baseline results stored in `xxx_BaU.gdx` can now be used for various counter
 
 #### Exploit results
 
-You can see and compare your simulation results by selecting the **Exploit results** button. More information is given in *MANAGE-WB Model Documentation*.
+You can see and compare your simulation results by selecting the **Exploit results** button. More information is given in *MANAGE-WB Model Documentation* by Beyene, Britz, Christensen, Dudu, and Galindev (2025).
 
 ## Contact
 
