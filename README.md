@@ -1,5 +1,3 @@
-# MANAGE-WB User Manual
-
 ## Overview
 
 MANAGE-WB is a recursive dynamic Computable General Equilibrium (CGE) model implemented in GAMS, developed by the World Bank for economy-wide policy analysis across a wide range of country contexts.
@@ -247,4 +245,4 @@ For questions or feedback, please reach out to [manage_wb@worldbank.org](mailto:
 
 ## License
 
-This project is licensed under the MIT License together with the [World Bank IGO Rider](https://github.com/worldbank/MANAGE-WB/blob/main/WB-IGO-RIDER.md) and [Disclaimer of Results](https://github.com/worldbank/MANAGE-WB/blob/main/DISCLAIMER.md). The Rider is purely procedural: it reserves all privileges and immunities enjoyed by the World Bank, without adding restrictions to the MIT permissions. The Disclaimer clarifies that the World Bank Group bears no responsibility for any study, analysis, or publication produced using this software, and that responsibility for errors in results, interpretation, or conclusions rests solely with the user. Please review all three files (LICENSE, WB-IGO-RIDER.md, and DISCLAIMER.md) before using, distributing, or contributing.
+This project is licensed under the MIT License together with the [World Bank IGO Rider](https://github.com/worldbank/MANAGE-WB/blob/main/WB-IGO-RIDER.md). The Rider is purely procedural: it reserves all privileges and immunities enjoyed by the World Bank, without adding restrictions to the MIT permissions. Please review both files before using, distributing, or contributing.
