@@ -1,0 +1,56 @@
+# This CITATION.cff file describes how to cite MANAGE-WB and its
+# accompanying model documentation.
+# Visit https://bit.ly/cffinit to generate or validate your own.
+cff-version: 1.2.0
+title: MANAGE-WB
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Lulit Mitik
+    family-names: Beyene
+    affiliation: World Bank
+  - given-names: Wolfgang
+    family-names: Britz
+    affiliation: World Bank
+  - given-names: Martin
+    family-names: Christensen
+    affiliation: World Bank
+  - given-names: Hasan
+    family-names: Dudu
+    affiliation: World Bank
+  - given-names: Ragchaasuren
+    family-names: Galindev
+    email: rgalindev@worldbank.org
+    affiliation: World Bank
+repository-code: 'https://github.com/worldbank/MANAGE-WB'
+# version: ''          # fill in the release tag/version you want cited
+# date-released: ''    # fill in the release date, e.g. '2026-06-22'
+license: MIT
+preferred-citation:
+  type: report
+  title: >-
+    The MANAGE-WB Applied General Equilibrium Model of the World Bank:
+    Model Documentation and User Guide
+  authors:
+    - given-names: Lulit Mitik
+      family-names: Beyene
+    - given-names: Wolfgang
+      family-names: Britz
+    - given-names: Martin
+      family-names: Christensen
+    - given-names: Hasan
+      family-names: Dudu
+    - given-names: Ragchaasuren
+      family-names: Galindev
+  year: 2025
+  collection-title: Policy Research Working Paper Series
+  collection-doi: 10.1596/1813-9450-11258
+  institution:
+    name: The World Bank
+  url: 'https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099543511132534267'
+  identifiers:
+    - type: doi
+      value: 10.1596/1813-9450-11258
+      description: 'Policy Research Working Paper 11258, The World Bank'
