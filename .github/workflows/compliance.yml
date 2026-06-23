@@ -16,7 +16,7 @@ name: Open Source Compliance
 on:
   push:
   pull_request:
-  schedule: [{ cron: '17 2 * * *' }]
+  schedule: [{ cron: '17 2 * * 0' }]
   workflow_dispatch:
     inputs:
       history_depth:
@@ -35,5 +35,5 @@ jobs:
   run:
     uses: worldbank/open-source-kit/.github/workflows/repo-compliance.yml@main
     with:
-      history_depth: ${{ inputs.history_depth || 0 }}
+      history_depth: ${{ fromJSON(inputs.history_depth || 0) }}
     secrets: inherit
