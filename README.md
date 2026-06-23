@@ -1,3 +1,5 @@
+# MANAGE-WB
+
 ## Overview
 
 MANAGE-WB is a recursive dynamic Computable General Equilibrium (CGE) model implemented in GAMS, developed by the World Bank for economy-wide policy analysis across a wide range of country contexts.
